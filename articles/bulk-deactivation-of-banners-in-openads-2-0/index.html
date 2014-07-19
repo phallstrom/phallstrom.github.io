@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <!--[if IE 6]>
+      <script>
+        if ( document.location.href.indexOf('/unsupported-browser') == -1 ) {
+          //document.location.href = '/unsupported-browser'
+        }
+      </script>
+    <![endif]-->
+    <title>bulk deactivation of banners in openads 2.0 | philip hallstrom | ruby on rails developer</title>
+    <link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
+    <meta charset='utf-8'>
+    <link href="/assets/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/javascripts/application.js" type="text/javascript"></script>
+    <!--[if lte IE 9]>
+      <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
+    <![endif]-->
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-615621-1']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <body class='articles article'>
+      <nav>
+        <div class='navbar navbar-fixed-top'>
+          <div class='navbar-inner'>
+            <div class='container'>
+              <div class='row'>
+                <div class='span12'>
+                  <div class='pull-right'>
+                    <a class='brand dict' href='/'>philip hallstrom</a>
+                  </div>
+                  <ul class='nav'>
+                    <li>
+                      <a href='/'>Home</a>
+                    </li>
+                    <li>
+                      <a href='/articles/'>Articles</a>
+                    </li>
+                    <li>
+                      <a href='/resume/'>Resume</a>
+                    </li>
+                    <li>
+                      <a href='/projects/'>Projects</a>
+                    </li>
+                    <li>
+                      <a href='/contact/'>Contact</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class='container'>
+        <h1>
+          Bulk Deactivation of Banners in OpenAds 2.0
+        </h1>
+        <div class='row'>
+          <div class='span9'>
+            <p class='muted'>
+              April 26, 2007
+            </p>
+            <article>
+              
+              
+              <p><a href="http://www.openads.org/">OpenAds</a> is an open source ad serving software
+              package.  It’s pretty nice too, but one thing it won’t let you do is easily
+              deactivate all banners belonging to a specific client.  This can be a pain when
+              those banners are remotely hosted and that host goes down, bringing your site
+              along with it (well, not down, but making it less attractive).  The following
+              is a patch that makes this possible.  It’s a bit on the hackish side, but it
+              does work.</p>
+              
+              <p>The patch works by adding two new links on the ‘Campaign Overview’ page for a
+              given client.</p>
+              
+              <p><img src="openads-bulk-deactivate.png" alt="openads-bulk-deactivate"></p>
+              
+              <p>It works by deactiving all of the client’s currently active banners and
+              prepending the banner’s description with “TEMP_DEACTIVATED (priority=123)”
+              (where 123 is the priority for that banner.</p>
+              
+              <p>This is the hackish part.  It’s necessary to change the description in order to
+              save the priority as the system will set the priority to zero for any
+              deactivated banners.</p>
+              
+              <p>To install this patch, download the following TGZ file, extract it, and read
+              the README inside.</p>
+              
+              <p>Note: The below patch was against OpenAds 2.0.11-pr1.  Other versions might
+              require some manual tweaking.</p>
+              
+              <p><a href="openads-bulk-deactivate.tgz" text="openads-bulk-deactivate.tgz">openads-bulk-deactivate.tgz</a></p>
+            </article>
+          </div>
+          <div class='span3'>
+            <aside>
+              <div class='well well-small'>
+                <p>
+                  <strong>Recent Articles</strong>
+                  <ul class='recent-articles'>
+                    <li><a href="/articles/my-bash-prompt/">My Bash Prompt</a></li>
+                    <li><a href="/articles/default-pow-app-to-list-other-pow-apps/">An app for Pow that will list your other Pow apps</a></li>
+                    <li><a href="/articles/make-zeuz-work-from-any-subdirectory/">Make Zeus work from any subdirectory of Rails.root</a></li>
+                    <li><a href="/articles/cgi-escape-undefined-method-bytesize-for-nil-class/">CGI.escape and "Undefined method 'bytesize' for nil:NilClass"</a></li>
+                    <li><a href="/articles/building-your-own-rails-and-ruby-searchable-api-docs/">Build your own Ruby and Rails Searchable API Docs</a></li>
+                    <li><a href="/articles/rails-couldnt-find-all-xxx-with-ids-found-1-but-was-looking-for-2/">Rails can't find all your IDs when using a HATBM relationship?</a></li>
+                    <li><a href="/articles/ruby-argumenterror-comparision-of-fixnum-with-float-failed/">In Ruby, dividing by zero doesn't always raise a ZeroDivisionError</a></li>
+                    <li><a href="/articles/fun-with-rails-git-log-and-gltail/">Fun with Rails' Git Log and glTail</a></li>
+                    <li><a href="/articles/use-applescript-to-automatically-close-safaris-downloads-window/">Use AppleScript to automatically close Safari's Downloads window</a></li>
+                    <li><a href="/articles/speeding-up-thumbnail-generation-with-paperclip/">Speeding up thumbnail generation with Paperclip</a></li>
+                  </ul>
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+        <footer>
+          © 2014 PJKH, LLC
+        </footer>
+      </div>
+    </body>
+  </head>
+</html>
+

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>philip hallstrom</title>
+  <subtitle>ruby on rails developer</subtitle>
+  <id>http://pjkh.com/articles</id>
+  <link href="http://pjkh.com/articles"/>
+  <link href="http://pjkh.com/articles/feed.xml" rel="self"/>
+  <updated>2014-01-16T00:00:00Z</updated>
+  <author>
+    <name>Philip Hallstrom</name>
+  </author>
+  <entry>
+    <title>My Bash Prompt</title>
+    <link rel="alternate" href="http://pjkh.com/articles/my-bash-prompt/"/>
+    <id>http://pjkh.com/articles/my-bash-prompt/</id>
+    <published>2014-01-16T00:00:00Z</published>
+    <updated>2014-01-16T10:14:24-08:00</updated>
+    <author>
+      <name>Philip Hallstrom</name>
+    </author>
+    <summary type="html">&lt;p&gt;I spend most of my day in the shell. This is my bash prompt with support for RVM and git branch information.&lt;/p&gt;
+
+&lt;p&gt;</summary>
+  </entry>
+  <entry>
+    <title>An app for Pow that will list your other Pow apps</title>
+    <link rel="alternate" href="http://pjkh.com/articles/default-pow-app-to-list-other-pow-apps/"/>
+    <id>http://pjkh.com/articles/default-pow-app-to-list-other-pow-apps/</id>
+    <published>2013-05-30T00:00:00Z</published>
+    <updated>2013-05-30T14:11:07-07:00</updated>
+    <author>
+      <name>Philip Hallstrom</name>
+    </author>
+    <summary type="html">&lt;p&gt;I use Pow to manage my Rails applications. I have quite a few and sometimes forget what I&amp;#8217;ve named them. Here&amp;#8217;s my solution.&lt;/p&gt;
+
+&lt;p&gt;</summary>
+  </entry>
+  <entry>
+    <title>Make Zeus work from any subdirectory of Rails.root</title>
+    <link rel="alternate" href="http://pjkh.com/articles/make-zeuz-work-from-any-subdirectory/"/>
+    <id>http://pjkh.com/articles/make-zeuz-work-from-any-subdirectory/</id>
+    <published>2013-05-17T00:00:00Z</published>
+    <updated>2013-05-23T09:29:11-07:00</updated>
+    <author>
+      <name>Philip Hallstrom</name>
+    </author>
+    <summary type="html">&lt;p&gt;Zeus is great for speeding up various Rails commands like console and tests, but it must be run from Rails root. Here&amp;#8217;s a way to get around that.&lt;/p&gt;
+
+&lt;p&gt;</summary>
+  </entry>
+  <entry>
+    <title>CGI.escape and "Undefined method 'bytesize' for nil:NilClass"</title>
+    <link rel="alternate" href="http://pjkh.com/articles/cgi-escape-undefined-method-bytesize-for-nil-class/"/>
+    <id>http://pjkh.com/articles/cgi-escape-undefined-method-bytesize-for-nil-class/</id>
+    <published>2013-05-01T00:00:00Z</published>
+    <updated>2013-05-01T14:32:38-07:00</updated>
+    <author>
+      <name>Philip Hallstrom</name>
+    </author>
+    <summary type="html">&lt;p&gt;How to solve this annoying error once and for all.&lt;/p&gt;
+
+&lt;p&gt;</summary>
+  </entry>
+  <entry>
+    <title>Build your own Ruby and Rails Searchable API Docs</title>
+    <link rel="alternate" href="http://pjkh.com/articles/building-your-own-rails-and-ruby-searchable-api-docs/"/>
+    <id>http://pjkh.com/articles/building-your-own-rails-and-ruby-searchable-api-docs/</id>
+    <published>2013-03-28T00:00:00Z</published>
+    <updated>2014-02-27T12:49:30-08:00</updated>
+    <author>
+      <name>Philip Hallstrom</name>
+    </author>
+    <summary type="html">&lt;p&gt;Online docs are nice, but having a local, searchable copy is even nicer.&lt;/p&gt;
+
+&lt;p&gt;</summary>
+  </entry>
+  <entry>
+    <title>Rails can't find all your IDs when using a HATBM relationship?</title>
+    <link rel="alternate" href="http://pjkh.com/articles/rails-couldnt-find-all-xxx-with-ids-found-1-but-was-looking-for-2/"/>
+    <id>http://pjkh.com/articles/rails-couldnt-find-all-xxx-with-ids-found-1-but-was-looking-for-2/</id>
+    <published>2012-10-30T00:00:00Z</published>
+    <updated>2013-03-27T17:23:46-07:00</updated>
+    <author>
+      <name>Philip Hallstrom</name>
+    </author>
+    <summary type="html">&lt;p&gt;Given a HATBM relationship, the use of the &amp;#8216;association_ids=&amp;#8217; setter can lead to a very unintuitive error.&lt;/p&gt;
+
+&lt;p&gt;</summary>
+  </entry>
+</feed>

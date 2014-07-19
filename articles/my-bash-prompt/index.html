@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <!--[if IE 6]>
+      <script>
+        if ( document.location.href.indexOf('/unsupported-browser') == -1 ) {
+          //document.location.href = '/unsupported-browser'
+        }
+      </script>
+    <![endif]-->
+    <title>my bash prompt | philip hallstrom | ruby on rails developer</title>
+    <link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
+    <meta charset='utf-8'>
+    <link href="/assets/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/javascripts/application.js" type="text/javascript"></script>
+    <!--[if lte IE 9]>
+      <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
+    <![endif]-->
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-615621-1']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <body class='articles article'>
+      <nav>
+        <div class='navbar navbar-fixed-top'>
+          <div class='navbar-inner'>
+            <div class='container'>
+              <div class='row'>
+                <div class='span12'>
+                  <div class='pull-right'>
+                    <a class='brand dict' href='/'>philip hallstrom</a>
+                  </div>
+                  <ul class='nav'>
+                    <li>
+                      <a href='/'>Home</a>
+                    </li>
+                    <li>
+                      <a href='/articles/'>Articles</a>
+                    </li>
+                    <li>
+                      <a href='/resume/'>Resume</a>
+                    </li>
+                    <li>
+                      <a href='/projects/'>Projects</a>
+                    </li>
+                    <li>
+                      <a href='/contact/'>Contact</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class='container'>
+        <h1>
+          My Bash Prompt
+        </h1>
+        <div class='row'>
+          <div class='span9'>
+            <p class='muted'>
+              January 16, 2014
+            </p>
+            <article>
+              </p>
+              
+              <p>I have a fair number of Ruby projects on my laptop at any one time, each running different versions of Ruby and each using their own gemset. Some have more than one git branch. I wanted a way to easily see which ruby version, RVM gemset, git branch, and current directory I am in at any time.</p>
+              
+              <p>This bash prompt does that for me. One thing that&#8217;s different from a lot of prompts I see is that mine is intentionally two lines with the second being a simple &#8217;$&#8217;. I like that this puts my next command as far left as possible regardless of the output of the prompt. And I&#8217;ve found that having a &#8220;full line&#8221; of prompt in a different color helps my eye break up the screen a bit better.</p>
+              
+              <p><img alt='image' src='bashprompt.png' /></p>
+              
+              <p>The relevant portions of my <code>.bashrc</code>:</p>
+              
+              <pre><code>[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot; # Load RVM&#x000A;&#x000A;# If we&#39;re in a git repository return the branch name,&#x000A;# otherwise nothing.  Include the &#39;...&#39; here so it isn&#39;t&#x000A;# duplicated in the output.&#x000A;function ps1_git {&#x000A;  ref=$(git symbolic-ref HEAD 2&gt; /dev/null) || return&#x000A;  echo &quot; … &quot;${ref#refs/heads/}&#x000A;}&#x000A;&#x000A;ps1=&quot;\[\e[0;34m\]&quot;                         # colored text&#x000A;ps1=$ps1&quot;\u@\h&quot;                            # user@host&#x000A;ps1=$ps1&quot; … &quot;&#x000A;ps1=$ps1&quot;\$(rvm-prompt v)\$(rvm-prompt g)&quot; # 1.9.3@gemset&#x000A;ps1=$ps1&quot;\$(ps1_git)&quot;                      # git branch&#x000A;ps1=$ps1&quot; … &quot;&#x000A;ps1=$ps1&quot;\w&quot;                               # relative working dir&#x000A;ps1=$ps1&quot;\\n&quot;                              # new line&#x000A;ps1=$ps1&quot;\$&quot;                               # $&#x000A;ps1=$ps1&quot; &quot;                                # space&#x000A;ps1=$ps1&quot;\[\e[0m\]&quot;                        # reset color&#x000A;export PS1=$ps1</code></pre>
+            </article>
+          </div>
+          <div class='span3'>
+            <aside>
+              <div class='well well-small'>
+                <p>
+                  <strong>Recent Articles</strong>
+                  <ul class='recent-articles'>
+                    <li><a href="/articles/my-bash-prompt/">My Bash Prompt</a></li>
+                    <li><a href="/articles/default-pow-app-to-list-other-pow-apps/">An app for Pow that will list your other Pow apps</a></li>
+                    <li><a href="/articles/make-zeuz-work-from-any-subdirectory/">Make Zeus work from any subdirectory of Rails.root</a></li>
+                    <li><a href="/articles/cgi-escape-undefined-method-bytesize-for-nil-class/">CGI.escape and "Undefined method 'bytesize' for nil:NilClass"</a></li>
+                    <li><a href="/articles/building-your-own-rails-and-ruby-searchable-api-docs/">Build your own Ruby and Rails Searchable API Docs</a></li>
+                    <li><a href="/articles/rails-couldnt-find-all-xxx-with-ids-found-1-but-was-looking-for-2/">Rails can't find all your IDs when using a HATBM relationship?</a></li>
+                    <li><a href="/articles/ruby-argumenterror-comparision-of-fixnum-with-float-failed/">In Ruby, dividing by zero doesn't always raise a ZeroDivisionError</a></li>
+                    <li><a href="/articles/fun-with-rails-git-log-and-gltail/">Fun with Rails' Git Log and glTail</a></li>
+                    <li><a href="/articles/use-applescript-to-automatically-close-safaris-downloads-window/">Use AppleScript to automatically close Safari's Downloads window</a></li>
+                    <li><a href="/articles/speeding-up-thumbnail-generation-with-paperclip/">Speeding up thumbnail generation with Paperclip</a></li>
+                  </ul>
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+        <footer>
+          © 2014 PJKH, LLC
+        </footer>
+      </div>
+    </body>
+  </head>
+</html>
+

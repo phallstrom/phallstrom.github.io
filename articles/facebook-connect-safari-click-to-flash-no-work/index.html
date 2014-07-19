@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <!--[if IE 6]>
+      <script>
+        if ( document.location.href.indexOf('/unsupported-browser') == -1 ) {
+          //document.location.href = '/unsupported-browser'
+        }
+      </script>
+    <![endif]-->
+    <title>facebook connect + safari + click to flash = no work | philip hallstrom | ruby on rails developer</title>
+    <link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
+    <meta charset='utf-8'>
+    <link href="/assets/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/javascripts/application.js" type="text/javascript"></script>
+    <!--[if lte IE 9]>
+      <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
+    <![endif]-->
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-615621-1']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <body class='articles article'>
+      <nav>
+        <div class='navbar navbar-fixed-top'>
+          <div class='navbar-inner'>
+            <div class='container'>
+              <div class='row'>
+                <div class='span12'>
+                  <div class='pull-right'>
+                    <a class='brand dict' href='/'>philip hallstrom</a>
+                  </div>
+                  <ul class='nav'>
+                    <li>
+                      <a href='/'>Home</a>
+                    </li>
+                    <li>
+                      <a href='/articles/'>Articles</a>
+                    </li>
+                    <li>
+                      <a href='/resume/'>Resume</a>
+                    </li>
+                    <li>
+                      <a href='/projects/'>Projects</a>
+                    </li>
+                    <li>
+                      <a href='/contact/'>Contact</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class='container'>
+        <h1>
+          Facebook Connect + Safari + Click to Flash = No Work
+        </h1>
+        <div class='row'>
+          <div class='span9'>
+            <p class='muted'>
+              March 31, 2009
+            </p>
+            <article>
+              
+              
+              <p>If you’re developing a Facebook Connect application, using Safari, and have installed the ClickToFlash plugin to stop flash from loading automatically, none of your <span class="caps">FBML</span> tags will be parsed.  This is a known issue with ClickToFlash and apparently fixed in <span class="caps">HEAD</span>.  But until that’s released watch out.  This post is made in hopes that Google picks it up and saves others some time tracking it down.</p>
+              
+              
+              	<p><a href="http://github.com/rentzsch/clicktoflash/tree/master">ClickToFlash</a> is a nice plugin for Safari that stops Flash from autoplaying and replaces it with a button to click if you want to see it.  It works great.  Except for Facebook Connect applications.</p>
+              
+              
+              	<p>The problem is that FB Connect inserts an invisible flash element into your page.  It’s this flash element that lets your page communicate with Facebook—and is what allows the parsing of <span class="caps">FBML</span> tags to work.</p>
+              
+              
+              	<p>ClickToFlash has an option to white list a site, but that doesn’t seem to work in this case.  It also has an option to load invisible flash by default, but that too doesn’t seem to do the trick in this case.</p>
+              
+              
+              	<p>Removing <code>~/Library/Internet Plug-Ins/ClickToFlash.plugin</code> removes it and will make things work again.</p>
+              
+              
+              	<p>See these two bug reports for more information on the cause and solution: <a href="http://rentzsch.lighthouseapp.com/projects/24342/tickets/70-all-facebook-connect-sites">#70</a>, <a href="http://rentzsch.lighthouseapp.com/projects/24342/tickets/109">#109</a></p>
+              
+              
+              	<p>Here’s hoping this helps someone else not bang their head against the wall for as long as I did :-)</p>
+            </article>
+          </div>
+          <div class='span3'>
+            <aside>
+              <div class='well well-small'>
+                <p>
+                  <strong>Recent Articles</strong>
+                  <ul class='recent-articles'>
+                    <li><a href="/articles/my-bash-prompt/">My Bash Prompt</a></li>
+                    <li><a href="/articles/default-pow-app-to-list-other-pow-apps/">An app for Pow that will list your other Pow apps</a></li>
+                    <li><a href="/articles/make-zeuz-work-from-any-subdirectory/">Make Zeus work from any subdirectory of Rails.root</a></li>
+                    <li><a href="/articles/cgi-escape-undefined-method-bytesize-for-nil-class/">CGI.escape and "Undefined method 'bytesize' for nil:NilClass"</a></li>
+                    <li><a href="/articles/building-your-own-rails-and-ruby-searchable-api-docs/">Build your own Ruby and Rails Searchable API Docs</a></li>
+                    <li><a href="/articles/rails-couldnt-find-all-xxx-with-ids-found-1-but-was-looking-for-2/">Rails can't find all your IDs when using a HATBM relationship?</a></li>
+                    <li><a href="/articles/ruby-argumenterror-comparision-of-fixnum-with-float-failed/">In Ruby, dividing by zero doesn't always raise a ZeroDivisionError</a></li>
+                    <li><a href="/articles/fun-with-rails-git-log-and-gltail/">Fun with Rails' Git Log and glTail</a></li>
+                    <li><a href="/articles/use-applescript-to-automatically-close-safaris-downloads-window/">Use AppleScript to automatically close Safari's Downloads window</a></li>
+                    <li><a href="/articles/speeding-up-thumbnail-generation-with-paperclip/">Speeding up thumbnail generation with Paperclip</a></li>
+                  </ul>
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+        <footer>
+          © 2014 PJKH, LLC
+        </footer>
+      </div>
+    </body>
+  </head>
+</html>
+

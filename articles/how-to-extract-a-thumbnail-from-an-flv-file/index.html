@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <!--[if IE 6]>
+      <script>
+        if ( document.location.href.indexOf('/unsupported-browser') == -1 ) {
+          //document.location.href = '/unsupported-browser'
+        }
+      </script>
+    <![endif]-->
+    <title>how to extract a thumbnail from an flv file | philip hallstrom | ruby on rails developer</title>
+    <link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
+    <meta charset='utf-8'>
+    <link href="/assets/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/javascripts/application.js" type="text/javascript"></script>
+    <!--[if lte IE 9]>
+      <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
+    <![endif]-->
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-615621-1']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <body class='articles article'>
+      <nav>
+        <div class='navbar navbar-fixed-top'>
+          <div class='navbar-inner'>
+            <div class='container'>
+              <div class='row'>
+                <div class='span12'>
+                  <div class='pull-right'>
+                    <a class='brand dict' href='/'>philip hallstrom</a>
+                  </div>
+                  <ul class='nav'>
+                    <li>
+                      <a href='/'>Home</a>
+                    </li>
+                    <li>
+                      <a href='/articles/'>Articles</a>
+                    </li>
+                    <li>
+                      <a href='/resume/'>Resume</a>
+                    </li>
+                    <li>
+                      <a href='/projects/'>Projects</a>
+                    </li>
+                    <li>
+                      <a href='/contact/'>Contact</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class='container'>
+        <h1>
+          How to Extract a Thumbnail from an FLV File
+        </h1>
+        <div class='row'>
+          <div class='span9'>
+            <p class='muted'>
+              August 12, 2007
+            </p>
+            <article>
+              
+              
+              <p>I recently had a need to extract a thumbnail graphic from an FLV file in order
+              to use it as a placeholder graphic.</p>
+              
+              <p>Found some help and pointers to ffmpeg and with some fiddling arrived at this:</p>
+              
+              <div class="CodeRay">
+                <div class="code"><pre>curl -s -r <span class="integer">0</span>-<span class="integer">100000</span> some_url |\&#x000A;ffmpeg -i - -vframes <span class="integer">10</span> -ss <span class="integer">00</span>:<span class="integer">00</span>:<span class="integer">00</span> <span class="error">\</span> &#x000A;-an -vcodec mjpeg -f rawvideo <span class="error">\</span> &#x000A;-s <span class="integer">180</span>x132 -y thumb.jpg <span class="integer">2</span>&gt;<span class="regexp"><span class="delimiter">/</span><span class="content">dev</span><span class="delimiter">/</span><span class="modifier">nu</span></span>ll</pre></div>
+              </div>
+              
+              <p>This will read the first 1mb of <code>some_url</code>, pass it onto ffmpeg, grab the frame
+              at time 00:00:00 and save it as a 180x132 jpeg file.  You could also save it as
+              a PNG by replacing <code>mjpeg</code> with <code>png</code> in the <code>vcodec</code>.  The output size also
+              needs to match the video ratio otherwise you get an error as well.</p>
+            </article>
+          </div>
+          <div class='span3'>
+            <aside>
+              <div class='well well-small'>
+                <p>
+                  <strong>Recent Articles</strong>
+                  <ul class='recent-articles'>
+                    <li><a href="/articles/my-bash-prompt/">My Bash Prompt</a></li>
+                    <li><a href="/articles/default-pow-app-to-list-other-pow-apps/">An app for Pow that will list your other Pow apps</a></li>
+                    <li><a href="/articles/make-zeuz-work-from-any-subdirectory/">Make Zeus work from any subdirectory of Rails.root</a></li>
+                    <li><a href="/articles/cgi-escape-undefined-method-bytesize-for-nil-class/">CGI.escape and "Undefined method 'bytesize' for nil:NilClass"</a></li>
+                    <li><a href="/articles/building-your-own-rails-and-ruby-searchable-api-docs/">Build your own Ruby and Rails Searchable API Docs</a></li>
+                    <li><a href="/articles/rails-couldnt-find-all-xxx-with-ids-found-1-but-was-looking-for-2/">Rails can't find all your IDs when using a HATBM relationship?</a></li>
+                    <li><a href="/articles/ruby-argumenterror-comparision-of-fixnum-with-float-failed/">In Ruby, dividing by zero doesn't always raise a ZeroDivisionError</a></li>
+                    <li><a href="/articles/fun-with-rails-git-log-and-gltail/">Fun with Rails' Git Log and glTail</a></li>
+                    <li><a href="/articles/use-applescript-to-automatically-close-safaris-downloads-window/">Use AppleScript to automatically close Safari's Downloads window</a></li>
+                    <li><a href="/articles/speeding-up-thumbnail-generation-with-paperclip/">Speeding up thumbnail generation with Paperclip</a></li>
+                  </ul>
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+        <footer>
+          © 2014 PJKH, LLC
+        </footer>
+      </div>
+    </body>
+  </head>
+</html>
+

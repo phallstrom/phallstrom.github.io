@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <!--[if IE 6]>
+      <script>
+        if ( document.location.href.indexOf('/unsupported-browser') == -1 ) {
+          //document.location.href = '/unsupported-browser'
+        }
+      </script>
+    <![endif]-->
+    <title>building rails and its friends on osx | philip hallstrom | ruby on rails developer</title>
+    <link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
+    <meta charset='utf-8'>
+    <link href="/assets/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/javascripts/application.js" type="text/javascript"></script>
+    <!--[if lte IE 9]>
+      <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
+    <![endif]-->
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-615621-1']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <body class='articles article'>
+      <nav>
+        <div class='navbar navbar-fixed-top'>
+          <div class='navbar-inner'>
+            <div class='container'>
+              <div class='row'>
+                <div class='span12'>
+                  <div class='pull-right'>
+                    <a class='brand dict' href='/'>philip hallstrom</a>
+                  </div>
+                  <ul class='nav'>
+                    <li>
+                      <a href='/'>Home</a>
+                    </li>
+                    <li>
+                      <a href='/articles/'>Articles</a>
+                    </li>
+                    <li>
+                      <a href='/resume/'>Resume</a>
+                    </li>
+                    <li>
+                      <a href='/projects/'>Projects</a>
+                    </li>
+                    <li>
+                      <a href='/contact/'>Contact</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class='container'>
+        <h1>
+          Building Rails and its friends on OSX
+        </h1>
+        <div class='row'>
+          <div class='span9'>
+            <p class='muted'>
+              January 15, 2007
+            </p>
+            <article>
+              
+              
+              <p>I recently switched to a mac and wanted to get our production environment
+              running completely on my macbook so I could work remotely.  To get there I
+              followed the excellent instructions by Dan Benajaman at
+              <a href="http://hivelogic.com/articles/2005/12/01/ruby_rails_lighttpd_mysql_tiger">Hivelogic</a>.
+              But they are a little old now (versions mostly) and didn’t include some of the
+              things I wanted.  So this post is step by step (almost pastable) to get the
+              following installed on OSX: MySQL, Subversion, ruby, ImageMagick, memcache,
+              mongrel, and capistrano (as well as any dependencies).</p>
+              
+              <p>You’re on your own for actually downloading the source tgz files, but they
+              should be pretty easy to find.  Also, there are a couple of comments (prefixed
+              with #) that ask you to do something, so don’t just copy and paste blindly.</p>
+              
+              <h2>MYSQL</h2>
+              
+              <ol>
+              <li>Double-click the drive image to mount it</li>
+              <li>Locate the MySQL installer (a file named something like
+              mysql-standard-5.0.27-osx10.4-i686.pkg) and run it, authenticating as needed</li>
+              <li>Double-click MySQLStartupItem.pkg, authenticate, and let it install</li>
+              <li>Double-click MySQL.prefPane and install it, deciding whether to make it
+              available to just the current user, or for all system users</li>
+              </ol>
+              <p>Once the install is complete, start the MySQL server using the newly-installed
+              control panel.</p>
+              
+              <p>Note: MySQL installs with a default user of root which has no password. Please
+              read this page about MySQL usernames and passwords and set a good one.</p>
+              
+              <h2>Subversion</h2>
+              
+              <ol>
+              <li>Just install it like any other mac app.
+              <a href="http://www.codingmonkeys.de/mbo/Subversion-1.4.0.pkg.zip">Subversion 1.4.0</a>
+              </li>
+              </ol>
+              <h2>Everything Else</h2>
+              
+              <div class="CodeRay">
+                <div class="code"><pre><span class="comment">#</span>&#x000A;<span class="comment"># edit /etc/csh.login and set the following:</span>&#x000A;<span class="comment">#</span>&#x000A;&#x000A;setenv <span class="constant">PATH</span> <span class="string"><span class="delimiter">"</span><span class="content">/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/mysql/bin</span><span class="delimiter">"</span></span>&#x000A;setenv <span class="constant">EVENT_NOKQUEUE</span> <span class="integer">1</span>&#x000A;&#x000A;<span class="comment">#</span>&#x000A;<span class="comment"># edit /etc/profile and set the following:</span>&#x000A;<span class="comment">#</span>&#x000A;&#x000A;export <span class="constant">PATH</span>=<span class="string"><span class="delimiter">"</span><span class="content">/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/mysql/bin</span><span class="delimiter">"</span></span>&#x000A;export <span class="constant">EVENT_NOKQUEUE</span>=<span class="integer">1</span>&#x000A;&#x000A;<span class="comment">#</span>&#x000A;<span class="comment"># relogin and make sure your path matches the above.</span>&#x000A;<span class="comment">#</span>&#x000A;&#x000A;<span class="comment"># </span>&#x000A;<span class="comment"># Force the use of tcsh so the couple of setenv/unsetenv belows work as is.</span>&#x000A;<span class="comment">#</span>&#x000A;tcsh&#x000A;&#x000A;<span class="comment"># </span>&#x000A;<span class="comment"># where we're going to put all our sources</span>&#x000A;<span class="comment">#</span>&#x000A;mkdir -p <span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local/src&#x000A;&#x000A;<span class="comment">#</span>&#x000A;<span class="comment"># copy all the source balls into this directory</span>&#x000A;<span class="comment">#</span>&#x000A;&#x000A;cd <span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local/src&#x000A;&#x000A;tar zxvf readline-<span class="float">5.2</span>.tar.gz&#x000A;cd readline-<span class="float">5.2</span>&#x000A;./configure --prefix=<span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local&#x000A;make&#x000A;make install&#x000A;cd ..&#x000A;&#x000A;tar zxvf ruby-<span class="float">1.8</span>.<span class="error">5</span>-p2.tar.gz&#x000A;cd ruby-<span class="float">1.8</span>.<span class="error">5</span>-p2&#x000A;setenv <span class="constant">CFLAGS</span> -<span class="constant">O</span>&#x000A;./configure --prefix=<span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local --enable-pthread --with-readline-dir=<span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local&#x000A;make&#x000A;make install&#x000A;make install-doc&#x000A;unsetenv <span class="constant">CFLAGS</span>&#x000A;cd ..&#x000A;&#x000A;tar zxvf rubygems-<span class="float">0.9</span>.<span class="error">0</span>.tgz&#x000A;cd rubygems-<span class="float">0.9</span>.<span class="error">0</span>&#x000A;ruby setup.rb&#x000A;cd ..&#x000A;&#x000A;sudo gem install rails --include-dependencies&#x000A;&#x000A;tar jxvf freetype-<span class="float">2.1</span>.<span class="error">10</span>.tar.bz2&#x000A;cd freetype-<span class="float">2.1</span>.<span class="error">10</span>&#x000A;./configure --prefix=<span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local&#x000A;make&#x000A;make install&#x000A;cd ..&#x000A;&#x000A;tar jxvf libpng-<span class="float">1.2</span>.<span class="error">14</span>.tar.bz2&#x000A;cd libpng-<span class="float">1.2</span>.<span class="error">14</span>&#x000A;./configure --prefix=<span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local&#x000A;make&#x000A;make install&#x000A;cd ..&#x000A;&#x000A;tar zxvf jpegsrc.v6b.tar.gz&#x000A;cd jpeg&#x000A;cd jpeg-<span class="integer">6</span>b/&#x000A;ln -s <span class="shell"><span class="delimiter">`</span><span class="content">which glibtool</span><span class="delimiter">`</span></span> ./libtool&#x000A;export <span class="constant">MACOSX_DEPLOYMENT_TARGET</span>=<span class="float">10.4</span>&#x000A;./configure --enable-shared --prefix=<span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local&#x000A;make&#x000A;mkdir -p <span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local/man/man1&#x000A;make install&#x000A;unsetenv <span class="constant">MACOSX_DEPLOYMENT_TARGET</span>&#x000A;cd ..&#x000A;&#x000A;tar zxvf tiff-<span class="float">3.8</span>.<span class="error">2</span>.tar.gz&#x000A;cd tiff-<span class="float">3.8</span>.<span class="error">2</span>&#x000A;./configure --prefix=<span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local&#x000A;make&#x000A;make install&#x000A;cd ..&#x000A;&#x000A;tar jxvf <span class="constant">ImageMagick</span>-<span class="float">6.3</span>.<span class="error">1</span>-<span class="integer">0</span>.tar.bz2&#x000A;cd <span class="constant">ImageMagick</span>-<span class="float">6.3</span>.<span class="error">1</span>&#x000A;./configure --prefix=<span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local&#x000A;make&#x000A;make install&#x000A;cd ..&#x000A;&#x000A;tar zxvf libevent-<span class="float">1.2</span>a.tar.gz&#x000A;cd libevent-<span class="float">1.2</span>a&#x000A;ls&#x000A;./configure --prefix=<span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local&#x000A;make&#x000A;make install&#x000A;cd ..&#x000A;&#x000A;tar zxvf memcached-<span class="float">1.2</span>.<span class="error">0</span>.tar.gz&#x000A;cd memcached-<span class="float">1.2</span>.<span class="error">0</span>&#x000A;&#x000A;<span class="comment">#</span>&#x000A;<span class="comment"># edit memcached.h and add '#undef NO_TCPPUSH' to the top</span>&#x000A;<span class="comment">#</span>&#x000A;&#x000A;./configure --with-libevent=<span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local --prefix=<span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local&#x000A;make&#x000A;make install&#x000A;&#x000A;<span class="comment">#</span>&#x000A;<span class="comment"># do each one of these individually as some ask for versions</span>&#x000A;<span class="comment">#</span>&#x000A;&#x000A;gem install rmagick -y&#x000A;gem install tidy -y&#x000A;gem install memcache-client -y&#x000A;gem install mongrel -y&#x000A;gem install capistrano -y&#x000A;gem install mongrel_cluster -y</pre></div>
+              </div>
+            </article>
+          </div>
+          <div class='span3'>
+            <aside>
+              <div class='well well-small'>
+                <p>
+                  <strong>Recent Articles</strong>
+                  <ul class='recent-articles'>
+                    <li><a href="/articles/my-bash-prompt/">My Bash Prompt</a></li>
+                    <li><a href="/articles/default-pow-app-to-list-other-pow-apps/">An app for Pow that will list your other Pow apps</a></li>
+                    <li><a href="/articles/make-zeuz-work-from-any-subdirectory/">Make Zeus work from any subdirectory of Rails.root</a></li>
+                    <li><a href="/articles/cgi-escape-undefined-method-bytesize-for-nil-class/">CGI.escape and "Undefined method 'bytesize' for nil:NilClass"</a></li>
+                    <li><a href="/articles/building-your-own-rails-and-ruby-searchable-api-docs/">Build your own Ruby and Rails Searchable API Docs</a></li>
+                    <li><a href="/articles/rails-couldnt-find-all-xxx-with-ids-found-1-but-was-looking-for-2/">Rails can't find all your IDs when using a HATBM relationship?</a></li>
+                    <li><a href="/articles/ruby-argumenterror-comparision-of-fixnum-with-float-failed/">In Ruby, dividing by zero doesn't always raise a ZeroDivisionError</a></li>
+                    <li><a href="/articles/fun-with-rails-git-log-and-gltail/">Fun with Rails' Git Log and glTail</a></li>
+                    <li><a href="/articles/use-applescript-to-automatically-close-safaris-downloads-window/">Use AppleScript to automatically close Safari's Downloads window</a></li>
+                    <li><a href="/articles/speeding-up-thumbnail-generation-with-paperclip/">Speeding up thumbnail generation with Paperclip</a></li>
+                  </ul>
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+        <footer>
+          © 2014 PJKH, LLC
+        </footer>
+      </div>
+    </body>
+  </head>
+</html>
+

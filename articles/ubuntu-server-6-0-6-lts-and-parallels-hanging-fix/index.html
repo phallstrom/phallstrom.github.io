@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <!--[if IE 6]>
+      <script>
+        if ( document.location.href.indexOf('/unsupported-browser') == -1 ) {
+          //document.location.href = '/unsupported-browser'
+        }
+      </script>
+    <![endif]-->
+    <title>ubuntu server 6.0.6 lts and parallels hanging - fix | philip hallstrom | ruby on rails developer</title>
+    <link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
+    <meta charset='utf-8'>
+    <link href="/assets/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/javascripts/application.js" type="text/javascript"></script>
+    <!--[if lte IE 9]>
+      <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
+    <![endif]-->
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-615621-1']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <body class='articles article'>
+      <nav>
+        <div class='navbar navbar-fixed-top'>
+          <div class='navbar-inner'>
+            <div class='container'>
+              <div class='row'>
+                <div class='span12'>
+                  <div class='pull-right'>
+                    <a class='brand dict' href='/'>philip hallstrom</a>
+                  </div>
+                  <ul class='nav'>
+                    <li>
+                      <a href='/'>Home</a>
+                    </li>
+                    <li>
+                      <a href='/articles/'>Articles</a>
+                    </li>
+                    <li>
+                      <a href='/resume/'>Resume</a>
+                    </li>
+                    <li>
+                      <a href='/projects/'>Projects</a>
+                    </li>
+                    <li>
+                      <a href='/contact/'>Contact</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class='container'>
+        <h1>
+          Ubuntu Server 6.0.6 LTS and Parallels Hanging - FIX
+        </h1>
+        <div class='row'>
+          <div class='span9'>
+            <p class='muted'>
+              June 25, 2007
+            </p>
+            <article>
+              
+              
+              <p>I recently setup Ubuntu Server 6.0.6 LTS under Parallels just because.  But it
+              would hang while uncompressing the kernel.</p>
+              
+              <p>To fix that, follow the steps outlined
+              <a href="http://ubuntuforums.org/showpost.php?s=35c38f2559e254675dec6aab1c54443e&amp;p=1170190&amp;postcount=17">here</a>.</p>
+              
+              <p>Mostly posting this in hopes google will pick it up and help other people find
+              the solution.</p>
+              
+              <h4>How to Install the Ubuntu 686 Kernel</h4>
+              
+              <p>1.) boot to the Ubuntu 6.06 server install cd. Choose ‘Rescue a broken system.’</p>
+              
+              <p>2.) when you get to the Rescue Operations screen choose “execute a shell in /dev/discs/disco/part1”, this option may read a little differently on your system.</p>
+              
+              <p>3.) Click continue if another screen appears.</p>
+              
+              <p>4.) At the prompt, type: sudo apt-get install linux-686</p>
+              
+              <p>5.) You will be asked if you want to continue, type: y</p>
+              
+              <p>6.) The installation of the 686 kernel will begin. It looks like an internet connection is required so the install files can be downloaded from the ubuntu website.</p>
+              
+              <p>7.) When the installation is done, type: exit</p>
+              
+              <p>8.) You should be returned to the Rescue Operations screen. Choose the last option: reboot the system. Make sure you’re not booting to the install cd!</p>
+              
+              <p>9.) Give the system a few moments to boot-up. At last, you should be placed at the login: prompt.</p>
+              
+              <p>10.) Celebrate!</p>
+            </article>
+          </div>
+          <div class='span3'>
+            <aside>
+              <div class='well well-small'>
+                <p>
+                  <strong>Recent Articles</strong>
+                  <ul class='recent-articles'>
+                    <li><a href="/articles/my-bash-prompt/">My Bash Prompt</a></li>
+                    <li><a href="/articles/default-pow-app-to-list-other-pow-apps/">An app for Pow that will list your other Pow apps</a></li>
+                    <li><a href="/articles/make-zeuz-work-from-any-subdirectory/">Make Zeus work from any subdirectory of Rails.root</a></li>
+                    <li><a href="/articles/cgi-escape-undefined-method-bytesize-for-nil-class/">CGI.escape and "Undefined method 'bytesize' for nil:NilClass"</a></li>
+                    <li><a href="/articles/building-your-own-rails-and-ruby-searchable-api-docs/">Build your own Ruby and Rails Searchable API Docs</a></li>
+                    <li><a href="/articles/rails-couldnt-find-all-xxx-with-ids-found-1-but-was-looking-for-2/">Rails can't find all your IDs when using a HATBM relationship?</a></li>
+                    <li><a href="/articles/ruby-argumenterror-comparision-of-fixnum-with-float-failed/">In Ruby, dividing by zero doesn't always raise a ZeroDivisionError</a></li>
+                    <li><a href="/articles/fun-with-rails-git-log-and-gltail/">Fun with Rails' Git Log and glTail</a></li>
+                    <li><a href="/articles/use-applescript-to-automatically-close-safaris-downloads-window/">Use AppleScript to automatically close Safari's Downloads window</a></li>
+                    <li><a href="/articles/speeding-up-thumbnail-generation-with-paperclip/">Speeding up thumbnail generation with Paperclip</a></li>
+                  </ul>
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+        <footer>
+          © 2014 PJKH, LLC
+        </footer>
+      </div>
+    </body>
+  </head>
+</html>
+

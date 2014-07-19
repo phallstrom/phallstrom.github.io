@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <!--[if IE 6]>
+      <script>
+        if ( document.location.href.indexOf('/unsupported-browser') == -1 ) {
+          //document.location.href = '/unsupported-browser'
+        }
+      </script>
+    <![endif]-->
+    <title>backups with rsync | philip hallstrom | ruby on rails developer</title>
+    <link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
+    <meta charset='utf-8'>
+    <link href="/assets/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/javascripts/application.js" type="text/javascript"></script>
+    <!--[if lte IE 9]>
+      <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
+    <![endif]-->
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-615621-1']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <body class='articles article'>
+      <nav>
+        <div class='navbar navbar-fixed-top'>
+          <div class='navbar-inner'>
+            <div class='container'>
+              <div class='row'>
+                <div class='span12'>
+                  <div class='pull-right'>
+                    <a class='brand dict' href='/'>philip hallstrom</a>
+                  </div>
+                  <ul class='nav'>
+                    <li>
+                      <a href='/'>Home</a>
+                    </li>
+                    <li>
+                      <a href='/articles/'>Articles</a>
+                    </li>
+                    <li>
+                      <a href='/resume/'>Resume</a>
+                    </li>
+                    <li>
+                      <a href='/projects/'>Projects</a>
+                    </li>
+                    <li>
+                      <a href='/contact/'>Contact</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class='container'>
+        <h1>
+          Backups with Rsync
+        </h1>
+        <div class='row'>
+          <div class='span9'>
+            <p class='muted'>
+              January 26, 2007
+            </p>
+            <article>
+              
+              
+              <p>The following are the scripts I use to backup various servers that support
+              rsync/ssh to a central server, automatically, keeping a couple week “change
+              log”, with minimal fuss. There are many other backup programs out there that
+              are much more sophisticated, but they are also more work, and I’m not
+              interested in archiving my backups for years and years and years. I just don’t
+              have that type of data nor a tape drive :)</p>
+              
+              <p>The first thing to do is to make sure you can ssh from your backup host to the
+              server you want to backup without being prompted for a password.  Google for
+              how to do this securely.</p>
+              
+              <p>Then <a href="rsync-backup.tgz" text="download this tgz">download this tgz</a> file and open it up, look
+              around, and change all the various pathnames to whatever works for you.</p>
+              
+              <p>There’s a couple of bits such as “dvdDir” and “dbDir” in shared.inc that aren’t
+              relevant to backing this up, but I’m too lazy to remove them just for this
+              post.</p>
+              
+              <p>In normal usage you’d run the script by typing “sh servers.sh”.  The script
+              will then look at each directory in the ‘servers’ directory and rsync the
+              content specified in servers/hostname/files.include while excluding content
+              specified in servers/hostname/files.exclude.  This is useful to say backup
+              ‘/usr/local/www’ while skipping ‘/usr/local/www/massive-log-file-directory’.</p>
+              
+              <p>Any files that have changed or been deleted will get copied into ‘dailysDir’ in
+              the appropriate location.  This is your “archive”.  ‘backupDir’ is your
+              snapshot.</p>
+              
+              <p>You can also specify a list of servers (ie. any valid directory in the
+              ‘servers’ directory) on the command line and it will only process those
+              entries.  If you do this though it <em>won’t</em> manage the ‘dailysDir’ expiration
+              and archiving since this should be used primarily for testing and when you’ve
+              added a directory to be backed up and want to get it <em>now</em>.</p>
+              
+              <p>The one other trick is if you need to use an ssh tunnel to get from your backup
+              server to the backup client, you can specify that in
+              “servers/hostname/tunnel.through” and it will first create an ssh tunnel on
+              port 22222 and work through that.</p>
+              
+              <p>I think that’s about it.  </p>
+            </article>
+          </div>
+          <div class='span3'>
+            <aside>
+              <div class='well well-small'>
+                <p>
+                  <strong>Recent Articles</strong>
+                  <ul class='recent-articles'>
+                    <li><a href="/articles/my-bash-prompt/">My Bash Prompt</a></li>
+                    <li><a href="/articles/default-pow-app-to-list-other-pow-apps/">An app for Pow that will list your other Pow apps</a></li>
+                    <li><a href="/articles/make-zeuz-work-from-any-subdirectory/">Make Zeus work from any subdirectory of Rails.root</a></li>
+                    <li><a href="/articles/cgi-escape-undefined-method-bytesize-for-nil-class/">CGI.escape and "Undefined method 'bytesize' for nil:NilClass"</a></li>
+                    <li><a href="/articles/building-your-own-rails-and-ruby-searchable-api-docs/">Build your own Ruby and Rails Searchable API Docs</a></li>
+                    <li><a href="/articles/rails-couldnt-find-all-xxx-with-ids-found-1-but-was-looking-for-2/">Rails can't find all your IDs when using a HATBM relationship?</a></li>
+                    <li><a href="/articles/ruby-argumenterror-comparision-of-fixnum-with-float-failed/">In Ruby, dividing by zero doesn't always raise a ZeroDivisionError</a></li>
+                    <li><a href="/articles/fun-with-rails-git-log-and-gltail/">Fun with Rails' Git Log and glTail</a></li>
+                    <li><a href="/articles/use-applescript-to-automatically-close-safaris-downloads-window/">Use AppleScript to automatically close Safari's Downloads window</a></li>
+                    <li><a href="/articles/speeding-up-thumbnail-generation-with-paperclip/">Speeding up thumbnail generation with Paperclip</a></li>
+                  </ul>
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+        <footer>
+          © 2014 PJKH, LLC
+        </footer>
+      </div>
+    </body>
+  </head>
+</html>
+

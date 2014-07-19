@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <!--[if IE 6]>
+      <script>
+        if ( document.location.href.indexOf('/unsupported-browser') == -1 ) {
+          //document.location.href = '/unsupported-browser'
+        }
+      </script>
+    <![endif]-->
+    <title>rails can't find all your ids when using a hatbm relationship? | philip hallstrom | ruby on rails developer</title>
+    <link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
+    <meta charset='utf-8'>
+    <link href="/assets/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="/assets/javascripts/application.js" type="text/javascript"></script>
+    <!--[if lte IE 9]>
+      <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
+    <![endif]-->
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-615621-1']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <body class='articles article'>
+      <nav>
+        <div class='navbar navbar-fixed-top'>
+          <div class='navbar-inner'>
+            <div class='container'>
+              <div class='row'>
+                <div class='span12'>
+                  <div class='pull-right'>
+                    <a class='brand dict' href='/'>philip hallstrom</a>
+                  </div>
+                  <ul class='nav'>
+                    <li>
+                      <a href='/'>Home</a>
+                    </li>
+                    <li>
+                      <a href='/articles/'>Articles</a>
+                    </li>
+                    <li>
+                      <a href='/resume/'>Resume</a>
+                    </li>
+                    <li>
+                      <a href='/projects/'>Projects</a>
+                    </li>
+                    <li>
+                      <a href='/contact/'>Contact</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class='container'>
+        <h1>
+          Rails can't find all your IDs when using a HATBM relationship?
+        </h1>
+        <div class='row'>
+          <div class='span9'>
+            <p class='muted'>
+              October 30, 2012
+            </p>
+            <article>
+              </p>
+              
+              <p>In all of the examples below, 123 is a valid provider and 99999 is an invalid one. Also Company HATBM Categories (and vice versa).</p>
+              
+              <p>Rails has a variety of ways of finding records and setting collections for associations. Depending on how you do it, you might get back objects, nil, or raise an error. For example:</p>
+              
+              <pre><code>Company.find(123)&#x000A; Company Load (0.6ms)  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 123 LIMIT 1&#x000A;  =&gt; #&lt;ClaimedCompany id: 123...&#x000A;&#x000A;Company.find(99999)&#x000A; Company Load (0.2ms)  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 99999 LIMIT 1&#x000A; ActiveRecord::RecordNotFound: Couldn&#39;t find Company with id=99999&#x000A;&#x000A;Company.find_by_id(99999)&#x000A; Company Load (0.2ms)  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 99999 LIMIT 1&#x000A;  =&gt; nil  </code></pre>
+              
+              <p>You can do similar things when looking for multiple IDs at once:</p>
+              
+              <pre><code>Company.find(123,99999)&#x000A; Company Load (0.2ms)  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` IN (123, 99999)&#x000A;ActiveRecord::RecordNotFound: Couldn&#39;t find all Companies with IDs (123, 99999) (found 1 results, but was looking for 2)&#x000A;&#x000A;Company.find_all_by_id([123,99999]).to_a.size&#x000A; Company Load (0.4ms)  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` IN (123, 99999)&#x000A;=&gt; 1 &#x000A;&#x000A;Company.where(:id =&gt; [123,99999]).to_a.size&#x000A; Company Load (0.2ms)  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` IN (123, 99999) &#x000A;=&gt; 1 </code></pre>
+              
+              <p>It&#8217;s interesting that the SQL is the same for each of the three queries above, but the results are different. What I&#8217;ve &#8220;learned&#8221; over time is that if you don&#8217;t know if the ID is going to exist and you don&#8217;t want to raise an error, the &#8220;_by_id&#8221; methods are the way to go.</p>
+              
+              <p>Further reinforcing this belief is the ability to set the _id field of a belongs_to association so that you don&#8217;t have to look up the associated object itself. Note in the following example I can set category.parent_id (which is part of an association) to any value I want and Rails doesn&#8217;t do any sanity checks whatsoever.</p>
+              
+              <pre><code>category&#x000A;=&gt; #&lt;Category id: 3, name: &quot;Other&quot;, parent_id: nil, created_at: &quot;2012-08-04 18:36:37&quot;, updated_at: &quot;2012-08-04 18:36:37&quot;, orig_id: 8&gt; &#x000A;category.parent_id = 99999&#x000A;=&gt; 99999 &#x000A;category.save&#x000A;  (0.1ms)  BEGIN&#x000A;  (0.4ms)  UPDATE `categories` SET `parent_id` = 99999, `updated_at` = &#39;2012-10-18 16:54:37&#39; WHERE `categories`.`id` = 3&#x000A;  (0.3ms)  COMMIT&#x000A;=&gt; true </code></pre>
+              
+              <p>Given all of this, I had assumed that in a HABTM relationship if I set &#8220;association_ids&#8221; to an array of integers, Rails would simply insert the values without checking. My thinking was this saved me the effort of loading up all those associated models when I already had their IDs which is all I really needed.</p>
+              
+              <p>This turns out to be wrong. Note in the next example where the first thing Rails does is load the Companies for the given IDs. Only then does it insert them into the join table.</p>
+              
+              <pre><code>category.provider_ids = [123]&#x000A; Company Load (0.2ms)  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 123 LIMIT 1&#x000A;  (0.1ms)  BEGIN&#x000A;  (0.4ms)  DELETE FROM `categories_companies` WHERE `categories_companies`.`category_id` = 3 AND `categories_companies`.`provider_id` IN (2&#x000A;  (0.2ms)  INSERT INTO `categories_companies` (`provider_id`, `category_id`) VALUES (123, 3)&#x000A;  (1.8ms)  COMMIT&#x000A;=&gt; [123] </code></pre>
+              
+              <p>As an aside, if we had already loaded up the provider objects elsewhere and assign them, Rails doesn&#8217;t redo this lookup.</p>
+              
+              <pre><code>p = Company.find(123)&#x000A; Company Load (0.2ms)  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 123 LIMIT 1&#x000A;&#x000A;category.companies = [p]&#x000A;  (0.2ms)  BEGIN&#x000A;  (0.4ms)  DELETE FROM `categories_companies` WHERE `categories_companies`.`category_id` = 3 AND `categories_companies`.`provider_id` IN (2&#x000A;  (0.3ms)  INSERT INTO `categories_companies` (`provider_id`, `category_id`) VALUES (123, 3)&#x000A;  (1.9ms)  COMMIT</code></pre>
+              
+              <p>Where this gets us in trouble is when we try to set &#8220;provider_ids&#8221; with an array of integers that don&#8217;t exist in the database. Like this:</p>
+              
+              <pre><code>category.provider_ids = [123,99999]&#x000A; Company Load (0.2ms)  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` IN (123, 99999)&#x000A;ActiveRecord::RecordNotFound: Couldn&#39;t find all Companies with IDs (123, 99999) (found 1 results, but was looking for 2)</code></pre>
+              
+              <p>An error is occurring because under the scenes, Rails is using the &#8216;find(x,x,x)&#8217; method to load up the IDs passed and as we saw above, this will raise an error when it can&#8217;t find them all. I find the error message to be odd since in the code itself there is no indication that you are loading Companies at all.</p>
+              
+              <p>Here&#8217;s the <a href='https://github.com/rails/rails/blob/v3.2.8/activerecord/lib/active_record/associations/collection_association.rb#L68'>method itself</a>.</p>
+              
+              <p>Why Rails doesn&#8217;t use one of the other methods instead I&#8217;m not sure. It seems to me that if you intentionally use the &#8220;xxxx_ids=&#8221; setter then you should also take the liability for screwing it up.</p>
+              
+              <p>Anyway, maybe this will stop someone else from tripping up on it.</p>
+            </article>
+          </div>
+          <div class='span3'>
+            <aside>
+              <div class='well well-small'>
+                <p>
+                  <strong>Recent Articles</strong>
+                  <ul class='recent-articles'>
+                    <li><a href="/articles/my-bash-prompt/">My Bash Prompt</a></li>
+                    <li><a href="/articles/default-pow-app-to-list-other-pow-apps/">An app for Pow that will list your other Pow apps</a></li>
+                    <li><a href="/articles/make-zeuz-work-from-any-subdirectory/">Make Zeus work from any subdirectory of Rails.root</a></li>
+                    <li><a href="/articles/cgi-escape-undefined-method-bytesize-for-nil-class/">CGI.escape and "Undefined method 'bytesize' for nil:NilClass"</a></li>
+                    <li><a href="/articles/building-your-own-rails-and-ruby-searchable-api-docs/">Build your own Ruby and Rails Searchable API Docs</a></li>
+                    <li><a href="/articles/rails-couldnt-find-all-xxx-with-ids-found-1-but-was-looking-for-2/">Rails can't find all your IDs when using a HATBM relationship?</a></li>
+                    <li><a href="/articles/ruby-argumenterror-comparision-of-fixnum-with-float-failed/">In Ruby, dividing by zero doesn't always raise a ZeroDivisionError</a></li>
+                    <li><a href="/articles/fun-with-rails-git-log-and-gltail/">Fun with Rails' Git Log and glTail</a></li>
+                    <li><a href="/articles/use-applescript-to-automatically-close-safaris-downloads-window/">Use AppleScript to automatically close Safari's Downloads window</a></li>
+                    <li><a href="/articles/speeding-up-thumbnail-generation-with-paperclip/">Speeding up thumbnail generation with Paperclip</a></li>
+                  </ul>
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+        <footer>
+          © 2014 PJKH, LLC
+        </footer>
+      </div>
+    </body>
+  </head>
+</html>
+
