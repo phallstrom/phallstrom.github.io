@@ -5,10 +5,23 @@
   <id>http://pjkh.com/articles</id>
   <link href="http://pjkh.com/articles"/>
   <link href="http://pjkh.com/articles/feed.xml" rel="self"/>
-  <updated>2014-01-16T00:00:00Z</updated>
+  <updated>2014-10-17T00:00:00Z</updated>
   <author>
     <name>Philip Hallstrom</name>
   </author>
+  <entry>
+    <title>Broken Images in Emails Sent via Sidekiq?</title>
+    <link rel="alternate" href="http://pjkh.com/articles/sidekiq-broken-images-in-email/"/>
+    <id>http://pjkh.com/articles/sidekiq-broken-images-in-email/</id>
+    <published>2014-10-17T00:00:00Z</published>
+    <updated>2014-10-17T15:47:00-07:00</updated>
+    <author>
+      <name>Philip Hallstrom</name>
+    </author>
+    <summary type="html">&lt;p&gt;Images broken in email when sent via Sidekiq? Make sure your assets are compiled.&lt;/p&gt;
+
+&lt;p&gt;</summary>
+  </entry>
   <entry>
     <title>My Bash Prompt</title>
     <link rel="alternate" href="http://pjkh.com/articles/my-bash-prompt/"/>
@@ -71,19 +84,6 @@
       <name>Philip Hallstrom</name>
     </author>
     <summary type="html">&lt;p&gt;Online docs are nice, but having a local, searchable copy is even nicer.&lt;/p&gt;
-
-&lt;p&gt;</summary>
-  </entry>
-  <entry>
-    <title>Rails can't find all your IDs when using a HATBM relationship?</title>
-    <link rel="alternate" href="http://pjkh.com/articles/rails-couldnt-find-all-xxx-with-ids-found-1-but-was-looking-for-2/"/>
-    <id>http://pjkh.com/articles/rails-couldnt-find-all-xxx-with-ids-found-1-but-was-looking-for-2/</id>
-    <published>2012-10-30T00:00:00Z</published>
-    <updated>2013-03-27T17:23:46-07:00</updated>
-    <author>
-      <name>Philip Hallstrom</name>
-    </author>
-    <summary type="html">&lt;p&gt;Given a HATBM relationship, the use of the &amp;#8216;association_ids=&amp;#8217; setter can lead to a very unintuitive error.&lt;/p&gt;
 
 &lt;p&gt;</summary>
   </entry>

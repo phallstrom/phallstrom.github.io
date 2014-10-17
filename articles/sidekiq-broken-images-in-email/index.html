@@ -8,7 +8,7 @@
         }
       </script>
     <![endif]-->
-    <title>mongrel rails dashboard widget | philip hallstrom | ruby on rails developer</title>
+    <title>broken images in emails sent via sidekiq? | philip hallstrom | ruby on rails developer</title>
     <link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
     <meta charset='utf-8'>
     <link href="/assets/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
@@ -62,35 +62,29 @@
       </nav>
       <div class='container'>
         <h1>
-          Mongrel Rails Dashboard Widget
+          Broken Images in Emails Sent via Sidekiq?
         </h1>
         <div class='row'>
           <div class='span9'>
             <p class='muted'>
-              December 20, 2006
+              October 17, 2014
             </p>
             <article>
+              </p>
               
+              <p>All of my email is sent via Sidekiq.</p>
               
-              <p>I’ve recently switched over to using a MacBook Pro for work.  One of the nice
-              things about that is the ability to run all my Rails projects locally.  So I’ve
-              got several different projects and branches of projects checked out and was
-              getting tired of starting/stopping individual mongrels depending on which one I
-              wanted to work on.  So, I’ve written my first dashboard widget - Mongrel Rails.</p>
+              <p>I recently setup a second dedicated sidekiq job processing server. I added it to my <code>sidekiq</code> Capistrano role and deployed. All was well, except some of the email being delivered had broken images. Oops. Inspecting the HTML email source revealed that the assets were not using the digest version. Strange.</p>
               
-              <p>In a nutshell, you tell it what directory all of your mongrel_cluster.yml
-              files live in and then you can start, stop, or restart any or all of them.
-              It’s basically a simple wrapper around “mongrel_rails …. cluster:????? -C
-              /path/to/my/yaml_file.yml”</p>
+              <p>The reason is because while my Rails application was installed, assets were not being precompiled.<br />By <a href='https://github.com/capistrano/rails/blob/master/lib/capistrano/tasks/assets.rake#L97'>default</a> Capistrano only precompiles assets in the <code>web</code> role.</p>
               
-              <p><img src="MongrelRails.png" alt="MongrelRails"></p>
+              <p>If the server doesn&#8217;t have precompiled assets, it will refert to the plain versions when building paths. In our case, these do not exist.</p>
               
-              <p>If there’s enough interest, I plan on adding actual command output so you can
-              look at that if something goes wrong, but I wanted to get this out there sooner
-              rather than later since I figure I can’t be the only one who would find it
-              useful.</p>
+              <p>The existing server didn&#8217;t exhibit this issue as it belonged to both roles.</p>
               
-              <p><a href="MongrelRails.wdgt.zip" text="Click here to download the widget">Click here to download the widget</a></p>
+              <p>The solution turns out to be simple. Put this into <code>config/deploy.rb</code> and redeploy.</p>
+              
+              <pre><code>set :assets_roles, [:web, :sidekiq]</code></pre>
             </article>
           </div>
           <div class='span3'>
