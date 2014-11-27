@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>http://pjkh.com/</loc></url>
+<url><loc>http://pjkh.com/articles/abusing-rails-middleware-to-remove-google-ads/</loc></url>
 <url><loc>http://pjkh.com/articles/alternating-row-colors-in-apple-mail/</loc></url>
 <url><loc>http://pjkh.com/articles/another-reason-people-prefer-macs-to-pcs/</loc></url>
 <url><loc>http://pjkh.com/articles/backups-with-rsync/</loc></url>

@@ -8,7 +8,7 @@
         }
       </script>
     <![endif]-->
-    <title>in ruby, dividing by zero doesn't always raise a zerodivisionerror | philip hallstrom | ruby on rails developer</title>
+    <title>abusing rails' middleware to remove google ads in development | philip hallstrom | ruby on rails developer</title>
     <link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
     <meta charset='utf-8'>
     <link href="/assets/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
@@ -65,41 +65,31 @@
       </nav>
       <div class='container'>
         <h1>
-          In Ruby, dividing by zero doesn't always raise a ZeroDivisionError
+          Abusing Rails' Middleware to Remove Google Ads in Development
         </h1>
         <div class='row'>
           <div class='span9'>
             <p class='muted'>
-              October 20, 2012
+              November 26, 2014
             </p>
             <article>
               </p>
               
-              <p>Usually when you try and divide by zero, Ruby (and every other language) will raise and &#8220;divided by zero&#8221; error. Like this:</p>
+              <p>One of the sites I&#8217;m working on has a fair number of Google ads on most of the pages. They got to be annoying to see all the time. Not to mention Safari&#8217;s logging of console errors about not being able to load an iframe from google&#8217;s servers on localhost. Ugh.</p>
               
-              <pre><code>1.9.3-p194&gt; 0/0&#x000A;ZeroDivisionError: divided by 0&#x000A;        from (irb):1:in `/&#39;</code></pre>
+              <p>So, I wrote some Rails&#8217; middleware to replace the offending ad calls with innocous divs, but only in development mode.</p>
               
-              <p>Or like this:</p>
+              <p>It turns the output on the left, into the output on the right. Just enough to check placement, size, and data attributes.</p>
               
-              <pre><code>1.9.3-p194 &gt; [0/0, 1].min&#x000A;ZeroDivisionError: divided by 0&#x000A;        from (irb):2:in `/&#39;</code></pre>
+              <p>To install this on your own site, grab the <a href='google_ad_munger.rb'>middleware</a>, and save it in <code>lib/google_ad_munger.rb</code>, then add the following line to <code>config/environments/development.rb</code>:</p>
               
-              <p>Where things get a little weird is if you use Floats. This time Ruby doesn&#8217;t return an error, but instead returns the <code>NaN</code> constant.</p>
+              <pre><code>config.middleware.use &#39;GoogleAdMunger&#39;</code></pre>
               
-              <pre><code>1.9.3-p194&gt; 0/0.0&#x000A; =&gt; NaN </code></pre>
-              
-              <p>When you combine this with <code>.min</code> then you get an error that, IMHO, isn&#8217;t very accurate.</p>
-              
-              <pre><code>1.9.3-p194&gt; [0/0.0, 1].min&#x000A;ArgumentError: comparison of Fixnum with Float failed&#x000A;        from (irb):3:in `each&#39;&#x000A;        from (irb):3:in `min&#39;</code></pre>
-              
-              <p>Even worse is when both arguments are Floats. How can a comparision of two Floats fail?</p>
-              
-              <pre><code>1.9.3p194&gt; [0/0.0, 1.0].min&#x000A;ArgumentError: comparison of Float with Float failed&#x000A;        from (irb):1:in `each&#39;</code></pre>
-              
-              <p>I think it&#8217;s interesting that if you compare those two elements directly, you don&#8217;t get an error at all.</p>
-              
-              <pre><code>1.9.3-p194&gt; 0/0.0 &lt;=&gt; 1&#x000A; =&gt; nil </code></pre>
-              
-              <p><em>Note:</em> This issue is also present in Ruby 1.8.7.</p>
+              <p>You may need to tweak the regular expressions to match your own needs.</p>
+              <div style='margin: 2em auto; text-align: center;'>
+              <p><img alt='Before' src='before.jpg' /> ––––––––&gt; <img alt='After' src='after.jpg' /></p>
+              </div>
+              <p>Much nicer.</p>
             </article>
             <div id='disqus_thread'>
               <script>
