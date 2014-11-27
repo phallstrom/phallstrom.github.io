@@ -85,6 +85,16 @@
               
               <pre><code>[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot; # Load RVM&#x000A;&#x000A;# If we&#39;re in a git repository return the branch name,&#x000A;# otherwise nothing.  Include the &#39;...&#39; here so it isn&#39;t&#x000A;# duplicated in the output.&#x000A;function ps1_git {&#x000A;  ref=$(git symbolic-ref HEAD 2&gt; /dev/null) || return&#x000A;  echo &quot; … &quot;${ref#refs/heads/}&#x000A;}&#x000A;&#x000A;ps1=&quot;\[\e[0;34m\]&quot;                         # colored text&#x000A;ps1=$ps1&quot;\u@\h&quot;                            # user@host&#x000A;ps1=$ps1&quot; … &quot;&#x000A;ps1=$ps1&quot;\$(rvm-prompt v)\$(rvm-prompt g)&quot; # 1.9.3@gemset&#x000A;ps1=$ps1&quot;\$(ps1_git)&quot;                      # git branch&#x000A;ps1=$ps1&quot; … &quot;&#x000A;ps1=$ps1&quot;\w&quot;                               # relative working dir&#x000A;ps1=$ps1&quot;\\n&quot;                              # new line&#x000A;ps1=$ps1&quot;\$&quot;                               # $&#x000A;ps1=$ps1&quot; &quot;                                # space&#x000A;ps1=$ps1&quot;\[\e[0m\]&quot;                        # reset color&#x000A;export PS1=$ps1</code></pre>
             </article>
+            <div id='disqus_thread'>
+              <script>
+                var disqus_shortname = 'pjkh';
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
           </div>
           <div class='span3'>
             <aside>

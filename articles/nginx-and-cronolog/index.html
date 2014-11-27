@@ -110,6 +110,16 @@
                 <div class="code"><pre>log_dir=<span class="string"><span class="delimiter">"</span><span class="content">/var/log/nginx</span><span class="delimiter">"</span></span>&#x000A;date_dir=<span class="shell"><span class="delimiter">`</span><span class="content">date +%Y/%m/%d/%H</span><span class="delimiter">`</span></span>    &#x000A;<span class="regexp"><span class="delimiter">/</span><span class="content">bin</span><span class="delimiter">/</span><span class="modifier">m</span></span>kdir -p <span class="error">$</span>{log_dir}/<span class="error">$</span>{date_dir} &gt; <span class="regexp"><span class="delimiter">/</span><span class="content">dev</span><span class="delimiter">/</span><span class="modifier">nu</span></span>ll <span class="integer">2</span>&gt;&amp;<span class="integer">1</span>&#x000A;<span class="regexp"><span class="delimiter">/</span><span class="content">bin</span><span class="delimiter">/</span><span class="modifier">m</span></span>v <span class="error">$</span>{log_dir}/access.log <span class="error">$</span>{log_dir}/<span class="error">$</span>{date_dir}/access.log&#x000A;<span class="regexp"><span class="delimiter">/</span><span class="content">bin</span><span class="delimiter">/</span><span class="modifier">m</span></span>v <span class="error">$</span>{log_dir}/error.log <span class="error">$</span>{log_dir}/<span class="error">$</span>{date_dir}/error.log&#x000A;kill -<span class="constant">USR1</span> <span class="shell"><span class="delimiter">`</span><span class="content">cat /var/run/nginx.pid</span><span class="delimiter">`</span></span>&#x000A;<span class="regexp"><span class="delimiter">/</span><span class="content">bin</span><span class="delimiter">/</span></span>gzip <span class="error">$</span>{log_dir}/<span class="error">$</span>{date_dir}/access.log &amp; &#x000A;<span class="regexp"><span class="delimiter">/</span><span class="content">bin</span><span class="delimiter">/</span></span>gzip <span class="error">$</span>{log_dir}/<span class="error">$</span>{date_dir}/error.log &amp;</pre></div>
               </div>
             </article>
+            <div id='disqus_thread'>
+              <script>
+                var disqus_shortname = 'pjkh';
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
           </div>
           <div class='span3'>
             <aside>

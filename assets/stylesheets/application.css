@@ -5459,18 +5459,24 @@ body.article h1 {
 body.article aside ul.recent-articles li {
   margin-bottom: 0.75em; }
 
-/* line 99, application.css.scss */
+/* line 97, application.css.scss */
+#disqus_thread {
+  margin-top: 4em;
+  padding-top: 1em;
+  border-top: 3px double #ccc; }
+
+/* line 107, application.css.scss */
 aside .other-work p {
   margin-bottom: 1.5em; }
-/* line 104, application.css.scss */
+/* line 112, application.css.scss */
 aside .other-clients ul {
   margin-left: 0px;
   list-style-type: none; }
-  /* line 107, application.css.scss */
+  /* line 115, application.css.scss */
   aside .other-clients ul li {
     margin-bottom: 0.75em; }
 
-/* line 118, application.css.scss */
+/* line 126, application.css.scss */
 footer {
   border-top: 1px solid #ccc;
   margin-top: 1em; }
