@@ -8,7 +8,7 @@
         }
       </script>
     <![endif]-->
-    <title>my bash prompt | philip hallstrom | ruby on rails developer</title>
+    <title>abusing rails' middleware to rewrite paperclip s3 urls | philip hallstrom | ruby on rails developer</title>
     <link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
     <meta charset='utf-8'>
     <link href="/assets/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
@@ -65,25 +65,34 @@
       </nav>
       <div class='container'>
         <h1>
-          My Bash Prompt
+          Abusing Rails' Middleware to Rewrite Paperclip S3 URLs
         </h1>
         <div class='row'>
           <div class='span9'>
             <p class='muted'>
-              January 16, 2014
+              November 26, 2014
             </p>
             <article>
               </p>
               
-              <p>I have a fair number of Ruby projects on my laptop at any one time, each running different versions of Ruby and each using their own gemset. Some have more than one git branch. I wanted a way to easily see which ruby version, RVM gemset, git branch, and current directory I am in at any time.</p>
+              <p>One of the sites I&#8217;m working on has a lot of S3 assets stored using Paperclip. The site has different buckets for production and staging. In development, S3 isn&#8217;t used at all, just local files. For this site we backup the production database and make it available in both staging and development environments. It just makes life easier.</p>
               
-              <p>This bash prompt does that for me. One thing that&#8217;s different from a lot of prompts I see is that mine is intentionally two lines with the second being a simple &#8217;$&#8217;. I like that this puts my next command as far left as possible regardless of the output of the prompt. And I&#8217;ve found that having a &#8220;full line&#8221; of prompt in a different color helps my eye break up the screen a bit better.</p>
+              <p>Except all of the images are broken.</p>
               
-              <p><img alt='image' src='bashprompt.png' /></p>
+              <p>This middleware fixes that by replacing staging sources with production sources.</p>
               
-              <p>The relevant portions of my <code>.bashrc</code>:</p>
+              <p>In staging all that is necessary is to replace the S3 bucket name.</p>
               
-              <pre><code>[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot; # Load RVM&#x000A;&#x000A;# If we&#39;re in a git repository return the branch name,&#x000A;# otherwise nothing.  Include the &#39;...&#39; here so it isn&#39;t&#x000A;# duplicated in the output.&#x000A;function ps1_git {&#x000A;  ref=$(git symbolic-ref HEAD 2&gt; /dev/null) || return&#x000A;  echo &quot; … &quot;${ref#refs/heads/}&#x000A;}&#x000A;&#x000A;ps1=&quot;\[\e[0;34m\]&quot;                         # colored text&#x000A;ps1=$ps1&quot;\u@\h&quot;                            # user@host&#x000A;ps1=$ps1&quot; … &quot;&#x000A;ps1=$ps1&quot;\$(rvm-prompt v)\$(rvm-prompt g)&quot; # 1.9.3@gemset&#x000A;ps1=$ps1&quot;\$(ps1_git)&quot;                      # git branch&#x000A;ps1=$ps1&quot; … &quot;&#x000A;ps1=$ps1&quot;\w&quot;                               # relative working dir&#x000A;ps1=$ps1&quot;\\n&quot;                              # new line&#x000A;ps1=$ps1&quot;\$&quot;                               # $&#x000A;ps1=$ps1&quot; &quot;                                # space&#x000A;ps1=$ps1&quot;\[\e[0m\]&quot;                        # reset color&#x000A;export PS1=$ps1</code></pre>
+              <p>In development we tweak things slightly so that if a local version exists we&#8217;ll use that, otherwise we replace things so that the production S3 URl is used.</p>
+              
+              <p>To install this on your own site, grab the <a href='amazon_s3_munger.rb'>middleware</a>, and save it in <code>lib/amazon_s3_munger.rb</code>, then add the following line to <code>config/environments/development.rb</code> and <code>config/environments/staging.rb</code>:</p>
+              
+              <pre><code>config.middleware.use &#39;AmazonS3Munger&#39;</code></pre>
+              
+              <p>You will most certainly need to tweak the code to match your own needs.</p>
+              <div style='margin: 2em auto; text-align: center;'>
+              <p><img alt='Before' src='before.jpg' /> –––––&gt; <img alt='After' src='after.jpg' /></p>
+              </div>
             </article>
             <div id='disqus_thread'>
               <script>
