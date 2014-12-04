@@ -5,10 +5,23 @@
   <id>http://pjkh.com/articles</id>
   <link href="http://pjkh.com/articles"/>
   <link href="http://pjkh.com/articles/feed.xml" rel="self"/>
-  <updated>2014-11-26T00:00:00Z</updated>
+  <updated>2014-12-03T00:00:00Z</updated>
   <author>
     <name>Philip Hallstrom</name>
   </author>
+  <entry>
+    <title>Abusing Rails' Middleware to Rewrite Paperclip S3 URLs</title>
+    <link rel="alternate" href="http://pjkh.com/articles/abusing-rails-middleware-to-rewrite-paperclip-s3-urls/"/>
+    <id>http://pjkh.com/articles/abusing-rails-middleware-to-rewrite-paperclip-s3-urls/</id>
+    <published>2014-12-03T00:00:00Z</published>
+    <updated>2014-12-03T16:18:40-08:00</updated>
+    <author>
+      <name>Philip Hallstrom</name>
+    </author>
+    <summary type="html">&lt;p&gt;I wanted a way to see production S3 assets in development when using a production database export.&lt;/p&gt;
+
+&lt;p&gt;</summary>
+  </entry>
   <entry>
     <title>Abusing Rails' Middleware to Remove Google Ads in Development</title>
     <link rel="alternate" href="http://pjkh.com/articles/abusing-rails-middleware-to-remove-google-ads/"/>
@@ -19,19 +32,6 @@
       <name>Philip Hallstrom</name>
     </author>
     <summary type="html">&lt;p&gt;I finally snapped and no longer wanted to see Google ads while developing my Rails app.&lt;/p&gt;
-
-&lt;p&gt;</summary>
-  </entry>
-  <entry>
-    <title>Abusing Rails' Middleware to Rewrite Paperclip S3 URLs</title>
-    <link rel="alternate" href="http://pjkh.com/articles/abusing-rails-middleware-to-rewrite-paperclip-s3-urls/"/>
-    <id>http://pjkh.com/articles/abusing-rails-middleware-to-rewrite-paperclip-s3-urls/</id>
-    <published>2014-11-26T00:00:00Z</published>
-    <updated>2014-12-03T16:17:18-08:00</updated>
-    <author>
-      <name>Philip Hallstrom</name>
-    </author>
-    <summary type="html">&lt;p&gt;I wanted a way to see production S3 assets in development when using a production database export.&lt;/p&gt;
 
 &lt;p&gt;</summary>
   </entry>
