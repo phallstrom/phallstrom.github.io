@@ -5,10 +5,23 @@
   <id>http://pjkh.com/articles</id>
   <link href="http://pjkh.com/articles"/>
   <link href="http://pjkh.com/articles/feed.xml" rel="self"/>
-  <updated>2014-12-03T00:00:00Z</updated>
+  <updated>2015-07-27T00:00:00Z</updated>
   <author>
     <name>Philip Hallstrom</name>
   </author>
+  <entry>
+    <title>Ansible: Organization using Roles, Tags, and Dependencies</title>
+    <link rel="alternate" href="http://pjkh.com/articles/ansible-roles-tags-dependencies/"/>
+    <id>http://pjkh.com/articles/ansible-roles-tags-dependencies/</id>
+    <published>2015-07-27T00:00:00Z</published>
+    <updated>2015-07-27T16:19:12-07:00</updated>
+    <author>
+      <name>Philip Hallstrom</name>
+    </author>
+    <summary type="html">&lt;p&gt;How I use Ansible&amp;#8217;s roles, tags, and dependencies to organize my playbooks.&lt;/p&gt;
+
+&lt;p&gt;</summary>
+  </entry>
   <entry>
     <title>Abusing Rails' Middleware to Rewrite Paperclip S3 URLs</title>
     <link rel="alternate" href="http://pjkh.com/articles/abusing-rails-middleware-to-rewrite-paperclip-s3-urls/"/>
@@ -71,19 +84,6 @@
       <name>Philip Hallstrom</name>
     </author>
     <summary type="html">&lt;p&gt;I spend most of my day in the shell. This is my bash prompt with support for RVM and git branch information.&lt;/p&gt;
-
-&lt;p&gt;</summary>
-  </entry>
-  <entry>
-    <title>An app for Pow that will list your other Pow apps</title>
-    <link rel="alternate" href="http://pjkh.com/articles/default-pow-app-to-list-other-pow-apps/"/>
-    <id>http://pjkh.com/articles/default-pow-app-to-list-other-pow-apps/</id>
-    <published>2013-05-30T00:00:00Z</published>
-    <updated>2013-05-30T14:11:07-07:00</updated>
-    <author>
-      <name>Philip Hallstrom</name>
-    </author>
-    <summary type="html">&lt;p&gt;I use Pow to manage my Rails applications. I have quite a few and sometimes forget what I&amp;#8217;ve named them. Here&amp;#8217;s my solution.&lt;/p&gt;
 
 &lt;p&gt;</summary>
   </entry>
