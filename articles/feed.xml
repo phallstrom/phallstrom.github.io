@@ -5,10 +5,23 @@
   <id>http://pjkh.com/articles</id>
   <link href="http://pjkh.com/articles"/>
   <link href="http://pjkh.com/articles/feed.xml" rel="self"/>
-  <updated>2015-07-27T00:00:00Z</updated>
+  <updated>2015-08-07T00:00:00Z</updated>
   <author>
     <name>Philip Hallstrom</name>
   </author>
+  <entry>
+    <title>Using a Rails' Mail Interceptor to Test Email</title>
+    <link rel="alternate" href="http://pjkh.com/articles/using-rails-mail-interceptor-to-test-email/"/>
+    <id>http://pjkh.com/articles/using-rails-mail-interceptor-to-test-email/</id>
+    <published>2015-08-07T00:00:00Z</published>
+    <updated>2015-08-07T10:45:12-07:00</updated>
+    <author>
+      <name>Philip Hallstrom</name>
+    </author>
+    <summary type="html">&lt;p&gt;How to use a mail interceptor to help test emails built in development via third party testing services.&lt;/p&gt;
+
+&lt;p&gt;</summary>
+  </entry>
   <entry>
     <title>Ansible: Organization using Roles, Tags, and Dependencies</title>
     <link rel="alternate" href="http://pjkh.com/articles/ansible-roles-tags-dependencies/"/>
@@ -71,19 +84,6 @@
       <name>Philip Hallstrom</name>
     </author>
     <summary type="html">&lt;p&gt;Images broken in email when sent via Sidekiq? Make sure your assets are compiled.&lt;/p&gt;
-
-&lt;p&gt;</summary>
-  </entry>
-  <entry>
-    <title>My Bash Prompt</title>
-    <link rel="alternate" href="http://pjkh.com/articles/my-bash-prompt/"/>
-    <id>http://pjkh.com/articles/my-bash-prompt/</id>
-    <published>2014-01-16T00:00:00Z</published>
-    <updated>2014-01-16T10:14:24-08:00</updated>
-    <author>
-      <name>Philip Hallstrom</name>
-    </author>
-    <summary type="html">&lt;p&gt;I spend most of my day in the shell. This is my bash prompt with support for RVM and git branch information.&lt;/p&gt;
 
 &lt;p&gt;</summary>
   </entry>

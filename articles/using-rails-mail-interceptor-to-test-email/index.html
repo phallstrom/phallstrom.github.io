@@ -8,7 +8,7 @@
         }
       </script>
     <![endif]-->
-    <title>facebook connect + safari + click to flash = no work | philip hallstrom | ruby on rails developer</title>
+    <title>using a rails' mail interceptor to test email | philip hallstrom | ruby on rails developer</title>
     <link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
     <meta charset='utf-8'>
     <link href="/assets/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
@@ -65,35 +65,51 @@
       </nav>
       <div class='container'>
         <h1>
-          Facebook Connect + Safari + Click to Flash = No Work
+          Using a Rails' Mail Interceptor to Test Email
         </h1>
         <div class='row'>
           <div class='span9'>
             <p class='muted'>
-              March 31, 2009
+              August 07, 2015
             </p>
             <article>
+              </p>
               
+              <p>I&#8217;m currently setting up a large number of emails as part of our Rails application. I like to run them through <a href='https://www.emailonacid.com'>Email on Acid</a> to test them on as many email clients as possible. However, this presents a problem in development as the images are all hosted locally. The third party testing service can&#8217;t access that without jumping through hoops to setup reverse proxies, etc.</p>
               
-              <p>If you’re developing a Facebook Connect application, using Safari, and have installed the ClickToFlash plugin to stop flash from loading automatically, none of your <span class="caps">FBML</span> tags will be parsed.  This is a known issue with ClickToFlash and apparently fixed in <span class="caps">HEAD</span>.  But until that’s released watch out.  This post is made in hopes that Google picks it up and saves others some time tracking it down.</p>
+              <p>Up until now I&#8217;ve deployed to a special staging server and then send the emails from there. This works, but it doesn&#8217;t make for a rapid development process.</p>
               
+              <p>I don&#8217;t actually care what the images look like while testing, just that they are present and in the right size so I can test spacing and layout.</p>
               
-              	<p><a href="http://github.com/rentzsch/clicktoflash/tree/master">ClickToFlash</a> is a nice plugin for Safari that stops Flash from autoplaying and replaces it with a button to click if you want to see it.  It works great.  Except for Facebook Connect applications.</p>
+              <p>So I created a mail interceptor to replace all of the images in the email with publicly accessible versions from <a href='http://placehold.it'>Placehold.it</a>.</p>
               
+              <p>Here is an example of what it looks like: <img alt='Example' src='email.png' /></p>
               
-              	<p>The problem is that FB Connect inserts an invisible flash element into your page.  It’s this flash element that lets your page communicate with Facebook—and is what allows the parsing of <span class="caps">FBML</span> tags to work.</p>
+              <p>Here is the interceptor class. A couple of notes:</p>
               
+              <ul>
+              <li>Nothing happens unless the email is sent to the testing service.</li>
               
-              	<p>ClickToFlash has an option to white list a site, but that doesn’t seem to work in this case.  It also has an option to load invisible flash by default, but that too doesn’t seem to do the trick in this case.</p>
+              <li>It required the Nokogiri gem.</li>
               
+              <li>I wrap everything in a block without catching errors as I&#8217;d prefer broken image links to emails not sending.</li>
               
-              	<p>Removing <code>~/Library/Internet Plug-Ins/ClickToFlash.plugin</code> removes it and will make things work again.</p>
+              <li>I shell out to Imagemagick&#8217;s <code>identify</code> command. There are some image sizing gems I could use, but this is only used in development and a bit hacky anyway so…</li>
               
+              <li>Change the recipient to match your specific email address used for testing.</li>
+              </ul>
               
-              	<p>See these two bug reports for more information on the cause and solution: <a href="http://rentzsch.lighthouseapp.com/projects/24342/tickets/70-all-facebook-connect-sites">#70</a>, <a href="http://rentzsch.lighthouseapp.com/projects/24342/tickets/109">#109</a></p>
+              <p><strong>lib/email_on_acid_interceptor.rb</strong></p>
               
+              <pre><code>class EmailOnAcidInterceptor&#x000A;  def self.delivering_email(message)&#x000A;&#x000A;    return unless message.to_addrs.include?(&#39;xxxx.runme@previews.emailonacid.com&#39;)&#x000A;&#x000A;    doc = Nokogiri::HTML(message.html_part.body.to_s)&#x000A;&#x000A;    doc.css(&#39;img&#39;).each do |img| &#x000A;      begin&#x000A;        asset_path = URI.parse(img[&#39;src&#39;]).path&#x000A;        fingerprint = asset_path[/-([0-9a-f]{7,128})\.[^.]+\z/, 1]&#x000A;        asset_path.sub!(&quot;-#{fingerprint}&quot;, &#39;&#39;)&#x000A;        asset_path.sub!(&quot;/assets/&quot;, &#39;&#39;)&#x000A;        file_name = Rails.application.assets[asset_path].filename&#x000A;        ext = File.extname(file_name)&#x000A;        w, h = `identify -format &#39;%w %h&#39; #{file_name.shellescape}[0]`.split(&#39; &#39;)&#x000A;        img[&#39;src&#39;] = &quot;http://placehold.it/#{w}x#{h}#{ext}&quot;&#x000A;      rescue&#x000A;        true&#x000A;      end&#x000A;    end&#x000A;&#x000A;    message.html_part.body = doc.to_s&#x000A;  end&#x000A;end</code></pre>
               
-              	<p>Here’s hoping this helps someone else not bang their head against the wall for as long as I did :-)</p>
+              <p>To make this work it needs to be initialized. The choice of filename is up to you, but this seems like a reasonable solution. The important thing is to only load the interceptor in the development environment.</p>
+              
+              <p><strong>config/initializers/mail_interceptors.rb</strong></p>
+              
+              <pre><code>if Rails.env.development?&#x000A;  ActionMailer::Base.register_interceptor(::EmailOnAcidInterceptor)&#x000A;end</code></pre>
+              
+              <p>That&#8217;s it. Restart your rails server and try it out.</p>
             </article>
             <div id='disqus_thread'>
               <script>
