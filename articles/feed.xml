@@ -5,10 +5,23 @@
   <id>http://pjkh.com/articles</id>
   <link href="http://pjkh.com/articles"/>
   <link href="http://pjkh.com/articles/feed.xml" rel="self"/>
-  <updated>2015-08-07T00:00:00Z</updated>
+  <updated>2015-08-28T00:00:00Z</updated>
   <author>
     <name>Philip Hallstrom</name>
   </author>
+  <entry>
+    <title>PostgreSQL Replication and Load Balancing with pgpool-II</title>
+    <link rel="alternate" href="http://pjkh.com/articles/postgresql-replication-and-load-balancing-with-pgpool2/"/>
+    <id>http://pjkh.com/articles/postgresql-replication-and-load-balancing-with-pgpool2/</id>
+    <published>2015-08-28T00:00:00Z</published>
+    <updated>2015-08-28T18:22:32-07:00</updated>
+    <author>
+      <name>Philip Hallstrom</name>
+    </author>
+    <summary type="html">&lt;p&gt;Instructions for setting up postgresql replication and load balancing.&lt;/p&gt;
+
+&lt;p&gt;</summary>
+  </entry>
   <entry>
     <title>Using a Rails' Mail Interceptor to Test Email</title>
     <link rel="alternate" href="http://pjkh.com/articles/using-rails-mail-interceptor-to-test-email/"/>
@@ -71,19 +84,6 @@
       <name>Philip Hallstrom</name>
     </author>
     <summary type="html">&lt;p&gt;A recent article on persisting hashes in Rails using PostgreSQL made me curious about performance.&lt;/p&gt;
-
-&lt;p&gt;</summary>
-  </entry>
-  <entry>
-    <title>Broken Images in Emails Sent via Sidekiq?</title>
-    <link rel="alternate" href="http://pjkh.com/articles/sidekiq-broken-images-in-email/"/>
-    <id>http://pjkh.com/articles/sidekiq-broken-images-in-email/</id>
-    <published>2014-10-17T00:00:00Z</published>
-    <updated>2014-10-17T15:47:00-07:00</updated>
-    <author>
-      <name>Philip Hallstrom</name>
-    </author>
-    <summary type="html">&lt;p&gt;Images broken in email when sent via Sidekiq? Make sure your assets are compiled.&lt;/p&gt;
 
 &lt;p&gt;</summary>
   </entry>
