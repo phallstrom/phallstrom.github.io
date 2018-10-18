@@ -1,42 +1,30 @@
-/* line 1, print.css.scss */
 body {
   padding-top: 0;
   padding-bottom: 0; }
 
-/* line 6, print.css.scss */
 .navbar {
   display: none; }
 
-/* line 10, print.css.scss */
 #disqus_thread {
   display: none; }
 
-/* line 14, print.css.scss */
 aside {
   display: none; }
 
-/* line 18, print.css.scss */
 footer {
   display: none; }
 
-/* line 22, print.css.scss */
 body.resume {
   font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif; }
-  /* line 24, print.css.scss */
   body.resume .container {
     width: 100%; }
-  /* line 25, print.css.scss */
   body.resume h1 {
     margin-left: 199px; }
-  /* line 27, print.css.scss */
   body.resume .row .span3 {
     display: none; }
-  /* line 28, print.css.scss */
   body.resume .row .span9 {
     width: 920px; }
-    /* line 31, print.css.scss */
     body.resume .row .span9 .span2 {
       width: 180px; }
-    /* line 32, print.css.scss */
     body.resume .row .span9 .span7 {
       width: 700px; }

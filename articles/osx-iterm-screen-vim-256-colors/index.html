@@ -1,187 +1,187 @@
 <!DOCTYPE html>
 <html lang='en'>
-  <head>
-    <!--[if IE 6]>
-      <script>
-        if ( document.location.href.indexOf('/unsupported-browser') == -1 ) {
-          //document.location.href = '/unsupported-browser'
-        }
-      </script>
-    <![endif]-->
-    <title>osx + iterm + screen + vim + 256 colors | philip hallstrom | ruby on rails developer</title>
-    <link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
-    <meta charset='utf-8'>
-    <link href="/assets/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="/assets/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-    <script src="/assets/javascripts/application.js" type="text/javascript"></script>
-    <!--[if lte IE 9]>
-      <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
-    <![endif]-->
-    <script>
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-615621-1']);
-      _gaq.push(['_trackPageview']);
-      
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-    <body class='articles article'>
-      <nav>
-        <div class='navbar navbar-fixed-top'>
-          <div class='navbar-inner'>
-            <div class='container'>
-              <div class='row'>
-                <div class='span12'>
-                  <div class='pull-right'>
-                    <a class='brand dict' href='/'>philip hallstrom</a>
-                  </div>
-                  <ul class='nav'>
-                    <li>
-                      <a href='/'>Home</a>
-                    </li>
-                    <li>
-                      <a href='/articles/'>Articles</a>
-                    </li>
-                    <li>
-                      <a href='/portfolio/'>Portfolio</a>
-                    </li>
-                    <li>
-                      <a href='/resume/'>Resume</a>
-                    </li>
-                    <li>
-                      <a href='/projects/'>Projects</a>
-                    </li>
-                    <li>
-                      <a href='/contact/'>Contact</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <div class='container'>
-        <h1>
-          OSX + iTerm + screen + vim + 256 colors
-        </h1>
-        <div class='row'>
-          <div class='span9'>
-            <p class='muted'>
-              July 09, 2008
-            </p>
-            <article>
-              
-              
-              
-              <p>
-              <b>Update:</b> You may want to consider using <a href='http://mxcl.github.com/homebrew/' target='_blank'>homebrew</a> to get its <a href='https://github.com/Homebrew/homebrew-dupes/blob/master/screen.rb' target='_blank'>version of screen</a> installed and then come back here and pick up the pieces.
-              <pre>&#x000A;brew tap homebrew/dupes&#x000A;brew install screen</pre>
-              </p>
-              
-              <hr/>
-              
-              <p>I’ve used vim for a long long time.  A couple of years ago I enabled syntax coloring, but
-              the defaults aren’t that attractive and recently I’ve begun to envy some of the Textmate color themes,
-              particularly the theme used in <a href="http://railscasts.com/">Ryan Bate’s Railscasts</a>.</p>
-              
-              <p>I also use <a href="http://www.gnu.org/software/screen/">GNU screen</a> to save sessions and because it reduces clutter.
-              Yes, I am probably the last Apple/Rails developer that doesn’t use Textmate :-)</p>
-              
-              <p>So I found a vim color theme called <a href="http://vim.sourceforge.net/scripts/script.php?script_id=2175">railscasts</a>
-              and tried it out.  And it worked.  Sort of.  iTerm + vim works.  Terminal + vim
-              does not.  iTerm + screen + vim does not.</p>
-              
-              <p>After much <a href="http://frexx.de/xterm-256-notes/">googling</a> I figured out that the
-              default ‘screen’ in OSX doesn’t support 256 colors.  Annoying.</p>
-              
-              <p>So I compiled screen from source explicitly enabling 256 color support and now
-              it all works (except via Terminal, but I don’t use Terminal anyway).</p>
-              
-              <p>Here’s what you need to do to get it working for you:</p>
-              
-              <p>Install screen using macports and make sure it has 256 color support (it should be enabled by default). Or compile and install screen from source with the following options. These are the
-              options used by the darwin ports version so if you want, just install that.  I
-              didn’t want to so built it from source.  To get that to work I had to apply
-              darwin’s patches.  Here’s the 
-              <a href="screen-4.0.3.tgz" text="TGZ of screen-4.0.3">TGZ of screen-4.0.3</a> with patches applied.
-              I installed into /usr/local so as not to overwrite the default /usr/bin/screen.  This may mean you need
-              to update your PATH to search /usr/local/bin before /usr/bin.</p>
-              
-              <div class="CodeRay">
-                <div class="code"><pre><span class="error">$</span> ./configure --enable-locale \&#x000A;   --enable-telnet \&#x000A;   --enable-colors256 \&#x000A;   --enable-rxvt_osc \&#x000A;   --prefix=<span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local&#x000A;<span class="error">$</span> make&#x000A;<span class="error">$</span> make install</pre></div>
-              </div>
-              
-              <p>Add the following to your screenrc (i.e. ~/.screenrc).  You may need to replace
-              “xterm-color” with whatever iTerm spits out when you do “echo $TERM”.  This is
-              what it was for me and I don’t remember setting it explicitly.  I suspect I
-              should remove the ‘termcapinfo xterm’ entry, but doesn’t seem to hurt me so
-              I’ve left it.</p>
-              
-              <div class="CodeRay">
-                <div class="code"><pre><span class="comment">#terminfo and termcap for nice 256 color terminal</span>&#x000A;<span class="comment"># allow bold colors - necessary for some reason</span>&#x000A;attrcolor b <span class="string"><span class="delimiter">"</span><span class="content">.I</span><span class="delimiter">"</span></span>&#x000A;<span class="comment"># tell screen how to set colors. AB = background, AF=foreground</span>&#x000A;termcapinfo xterm <span class="string"><span class="delimiter">"</span><span class="content">Co#256:AB=</span><span class="char">\E</span><span class="content">[48;5;%dm:AF=</span><span class="char">\E</span><span class="content">[38;5;%dm</span><span class="delimiter">"</span></span>&#x000A;termcapinfo xterm-color <span class="string"><span class="delimiter">"</span><span class="content">Co#256:AB=</span><span class="char">\E</span><span class="content">[48;5;%dm:AF=</span><span class="char">\E</span><span class="content">[38;5;%dm</span><span class="delimiter">"</span></span>&#x000A;<span class="comment"># erase background with current bg color</span>&#x000A;defbce <span class="string"><span class="delimiter">"</span><span class="content">on</span><span class="delimiter">"</span></span></pre></div>
-              </div>
-              
-              <p>Jim Pitman let me know that (at least for him) he needed to use xterm-color256 where I have used xterm-color.  So if it doesn’t work for you, give that a try.</p>
-              
-              <p>Add this to the <em>top</em> of your .vimrc.  It must go before any syntax/color settings (so I am told):</p>
-              
-              <div class="CodeRay">
-                <div class="code"><pre>set t_Co=<span class="integer">256</span></pre></div>
-              </div>
-              
-              <p>Download and install a vim color theme into ~/.vim/colors.  Assuming you’ve downloaded the ‘railscasts.vim’ theme
-              then in vim you can type the following to load the color theme:</p>
-              
-              <div class="CodeRay">
-                <div class="code"><pre><span class="symbol">:colorscheme</span> railscasts</pre></div>
-              </div>
-              
-              <p>And assuming you have a dark on light terminal setup you’ll get something like the below.</p>
-              
-              <p><img src="railscast-vim.png" alt="railscast-vim"></p>
-            </article>
-            <div id='disqus_thread'>
-              <script>
-                var disqus_shortname = 'pjkh';
-                (function() {
-                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-              </script>
-            </div>
-          </div>
-          <div class='span3'>
-            <aside>
-              <div class='well well-small'>
-                <p>
-                  <strong>Recent Articles</strong>
-                  <ul class='recent-articles'>
-                    <li><a href="/articles/postgresql-replication-and-load-balancing-with-pgpool2/">PostgreSQL Replication and Load Balancing with pgpool-II</a></li>
-                    <li><a href="/articles/using-rails-mail-interceptor-to-test-email/">Using a Rails' Mail Interceptor to Test Email</a></li>
-                    <li><a href="/articles/ansible-roles-tags-dependencies/">Ansible: Organization using Roles, Tags, and Dependencies</a></li>
-                    <li><a href="/articles/abusing-rails-middleware-to-rewrite-paperclip-s3-urls/">Abusing Rails' Middleware to Rewrite Paperclip S3 URLs</a></li>
-                    <li><a href="/articles/abusing-rails-middleware-to-remove-google-ads/">Abusing Rails' Middleware to Remove Google Ads in Development</a></li>
-                    <li><a href="/articles/postgresql-json-vs-rails-serialize/">PostgreSQL's JSON vs Rails' Serialize</a></li>
-                    <li><a href="/articles/sidekiq-broken-images-in-email/">Broken Images in Emails Sent via Sidekiq?</a></li>
-                    <li><a href="/articles/my-bash-prompt/">My Bash Prompt</a></li>
-                    <li><a href="/articles/default-pow-app-to-list-other-pow-apps/">An app for Pow that will list your other Pow apps</a></li>
-                    <li><a href="/articles/make-zeuz-work-from-any-subdirectory/">Make Zeus work from any subdirectory of Rails.root</a></li>
-                  </ul>
-                </p>
-              </div>
-            </aside>
-          </div>
-        </div>
-        <footer>
-          © 2015 PJKH, LLC
-        </footer>
-      </div>
-    </body>
-  </head>
-</html>
+<head>
+<!--[if IE 6]>
+<script>
+  if ( document.location.href.indexOf('/unsupported-browser') == -1 ) {
+    //document.location.href = '/unsupported-browser'
+  }
+</script>
+<![endif]-->
+<title>osx + iterm + screen + vim + 256 colors | philip hallstrom | ruby on rails developer</title>
+<link href='/articles/feed.xml' rel='alternate' title='Article Feed' type='application/atom+xml'>
+<meta charset='utf-8'>
+<link href="/assets/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/assets/stylesheets/print.css" rel="stylesheet" media="print" />
+<script src="/assets/javascripts/application.js"></script>
+<!--[if lte IE 9]>
+<script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
+<![endif]-->
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-615621-1']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<body class='articles article'>
+<nav>
+<div class='navbar navbar-fixed-top'>
+<div class='navbar-inner'>
+<div class='container'>
+<div class='row'>
+<div class='span12'>
+<div class='pull-right'>
+<a class='brand dict' href='/'>philip hallstrom</a>
+</div>
+<ul class='nav'>
+<li>
+<a href='/'>Home</a>
+</li>
+<li>
+<a href='/articles/'>Articles</a>
+</li>
+<li>
+<a href='/portfolio/'>Portfolio</a>
+</li>
+<li>
+<a href='/resume/'>Resume</a>
+</li>
+<li>
+<a href='/projects/'>Projects</a>
+</li>
+<li>
+<a href='/contact/'>Contact</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<div class='container'>
+<h1>
+OSX + iTerm + screen + vim + 256 colors
+</h1>
+<div class='row'>
+<div class='span9'>
+<p class='muted'>
+July 09, 2008
+</p>
+<article>
 
+
+<p>
+<b>Update:</b> You may want to consider using <a href='http://mxcl.github.com/homebrew/' target='_blank'>homebrew</a> to get its <a href='https://github.com/Homebrew/homebrew-dupes/blob/master/screen.rb' target='_blank'>version of screen</a> installed and then come back here and pick up the pieces.
+<pre>&#x000A;brew tap homebrew/dupes&#x000A;brew install screen</pre>
+</p>
+
+<hr/>
+
+<p>I’ve used vim for a long long time.  A couple of years ago I enabled syntax coloring, but
+the defaults aren’t that attractive and recently I’ve begun to envy some of the Textmate color themes,
+particularly the theme used in <a href="http://railscasts.com/">Ryan Bate’s Railscasts</a>.</p>
+
+<p>I also use <a href="http://www.gnu.org/software/screen/">GNU screen</a> to save sessions and because it reduces clutter.
+Yes, I am probably the last Apple/Rails developer that doesn’t use Textmate :-)</p>
+
+<p>So I found a vim color theme called <a href="http://vim.sourceforge.net/scripts/script.php?script_id=2175">railscasts</a>
+and tried it out.  And it worked.  Sort of.  iTerm + vim works.  Terminal + vim
+does not.  iTerm + screen + vim does not.</p>
+
+<p>After much <a href="http://frexx.de/xterm-256-notes/">googling</a> I figured out that the
+default ‘screen’ in OSX doesn’t support 256 colors.  Annoying.</p>
+
+<p>So I compiled screen from source explicitly enabling 256 color support and now
+it all works (except via Terminal, but I don’t use Terminal anyway).</p>
+
+<p>Here’s what you need to do to get it working for you:</p>
+
+<p>Install screen using macports and make sure it has 256 color support (it should be enabled by default). Or compile and install screen from source with the following options. These are the
+options used by the darwin ports version so if you want, just install that.  I
+didn’t want to so built it from source.  To get that to work I had to apply
+darwin’s patches.  Here’s the 
+<a href="screen-4.0.3.tgz" text="TGZ of screen-4.0.3">TGZ of screen-4.0.3</a> with patches applied.
+I installed into /usr/local so as not to overwrite the default /usr/bin/screen.  This may mean you need
+to update your PATH to search /usr/local/bin before /usr/bin.</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="error">$</span> ./configure --enable-locale \&#x000A;   --enable-telnet \&#x000A;   --enable-colors256 \&#x000A;   --enable-rxvt_osc \&#x000A;   --prefix=<span class="regexp"><span class="delimiter">/</span><span class="content">usr</span><span class="delimiter">/</span></span>local&#x000A;<span class="error">$</span> make&#x000A;<span class="error">$</span> make install</pre></div>
+</div>
+
+<p>Add the following to your screenrc (i.e. ~/.screenrc).  You may need to replace
+“xterm-color” with whatever iTerm spits out when you do “echo $TERM”.  This is
+what it was for me and I don’t remember setting it explicitly.  I suspect I
+should remove the ‘termcapinfo xterm’ entry, but doesn’t seem to hurt me so
+I’ve left it.</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="comment">#terminfo and termcap for nice 256 color terminal</span>&#x000A;<span class="comment"># allow bold colors - necessary for some reason</span>&#x000A;attrcolor b <span class="string"><span class="delimiter">"</span><span class="content">.I</span><span class="delimiter">"</span></span>&#x000A;<span class="comment"># tell screen how to set colors. AB = background, AF=foreground</span>&#x000A;termcapinfo xterm <span class="string"><span class="delimiter">"</span><span class="content">Co#256:AB=</span><span class="char">\E</span><span class="content">[48;5;%dm:AF=</span><span class="char">\E</span><span class="content">[38;5;%dm</span><span class="delimiter">"</span></span>&#x000A;termcapinfo xterm-color <span class="string"><span class="delimiter">"</span><span class="content">Co#256:AB=</span><span class="char">\E</span><span class="content">[48;5;%dm:AF=</span><span class="char">\E</span><span class="content">[38;5;%dm</span><span class="delimiter">"</span></span>&#x000A;<span class="comment"># erase background with current bg color</span>&#x000A;defbce <span class="string"><span class="delimiter">"</span><span class="content">on</span><span class="delimiter">"</span></span></pre></div>
+</div>
+
+<p>Jim Pitman let me know that (at least for him) he needed to use xterm-color256 where I have used xterm-color.  So if it doesn’t work for you, give that a try.</p>
+
+<p>Add this to the <em>top</em> of your .vimrc.  It must go before any syntax/color settings (so I am told):</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>set t_Co=<span class="integer">256</span></pre></div>
+</div>
+
+<p>Download and install a vim color theme into ~/.vim/colors.  Assuming you’ve downloaded the ‘railscasts.vim’ theme
+then in vim you can type the following to load the color theme:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="symbol">:colorscheme</span> railscasts</pre></div>
+</div>
+
+<p>And assuming you have a dark on light terminal setup you’ll get something like the below.</p>
+
+<p><img src="railscast-vim.png" alt="railscast-vim"></p>
+</article>
+<div id='disqus_thread'>
+<script>
+  var disqus_shortname = 'pjkh';
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+</div>
+
+</div>
+<div class='span3'>
+<aside>
+<div class='well well-small'>
+<p>
+<strong>Recent Articles</strong>
+<ul class='recent-articles'>
+<li><a href="/articles/postgresql-replication-and-load-balancing-with-pgpool2/">PostgreSQL Replication and Load Balancing with pgpool-II</a></li>
+<li><a href="/articles/using-rails-mail-interceptor-to-test-email/">Using a Rails' Mail Interceptor to Test Email</a></li>
+<li><a href="/articles/ansible-roles-tags-dependencies/">Ansible: Organization using Roles, Tags, and Dependencies</a></li>
+<li><a href="/articles/abusing-rails-middleware-to-rewrite-paperclip-s3-urls/">Abusing Rails' Middleware to Rewrite Paperclip S3 URLs</a></li>
+<li><a href="/articles/abusing-rails-middleware-to-remove-google-ads/">Abusing Rails' Middleware to Remove Google Ads in Development</a></li>
+<li><a href="/articles/postgresql-json-vs-rails-serialize/">PostgreSQL's JSON vs Rails' Serialize</a></li>
+<li><a href="/articles/sidekiq-broken-images-in-email/">Broken Images in Emails Sent via Sidekiq?</a></li>
+<li><a href="/articles/my-bash-prompt/">My Bash Prompt</a></li>
+<li><a href="/articles/default-pow-app-to-list-other-pow-apps/">An app for Pow that will list your other Pow apps</a></li>
+<li><a href="/articles/make-zeuz-work-from-any-subdirectory/">Make Zeus work from any subdirectory of Rails.root</a></li>
+</ul>
+</p>
+</div>
+
+</aside>
+</div>
+</div>
+<footer>
+© 2018 PJKH, LLC
+</footer>
+</div>
+</body>
+</head>
+</html>
