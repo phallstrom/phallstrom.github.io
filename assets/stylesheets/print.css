@@ -5,13 +5,7 @@ body {
 .navbar {
   display: none; }
 
-#disqus_thread {
-  display: none; }
-
 aside {
-  display: none; }
-
-footer {
   display: none; }
 
 body.resume {

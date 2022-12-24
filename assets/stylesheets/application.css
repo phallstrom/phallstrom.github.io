@@ -401,13 +401,13 @@ a:hover {
 p {
   margin: 0 0 10px; }
 
-.lead, body.home .dictionary {
+.lead {
   margin-bottom: 20px;
   font-size: 21px;
   font-weight: 200;
   line-height: 30px; }
 
-small, body.article aside ul.recent-articles li a, aside .other-clients ul li, footer {
+small, aside .other-clients ul li, footer {
   font-size: 85%; }
 
 strong {
@@ -419,7 +419,7 @@ em {
 cite {
   font-style: normal; }
 
-.muted, body.resume h3, body.articles h3, footer {
+.muted, body.resume h3, footer {
   color: #999; }
 
 .text-warning {
@@ -441,7 +441,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   color: inherit;
   text-rendering: optimizelegibility; }
-  h1 small, h1 body.article aside ul.recent-articles li a, body.article aside ul.recent-articles li h1 a, h1 aside .other-clients ul li, aside .other-clients ul h1 li, h1 footer, h2 small, h2 body.article aside ul.recent-articles li a, body.article aside ul.recent-articles li h2 a, h2 aside .other-clients ul li, aside .other-clients ul h2 li, h2 footer, h3 small, h3 body.article aside ul.recent-articles li a, body.article aside ul.recent-articles li h3 a, h3 aside .other-clients ul li, aside .other-clients ul h3 li, h3 footer, h4 small, h4 body.article aside ul.recent-articles li a, body.article aside ul.recent-articles li h4 a, h4 aside .other-clients ul li, aside .other-clients ul h4 li, h4 footer, h5 small, h5 body.article aside ul.recent-articles li a, body.article aside ul.recent-articles li h5 a, h5 aside .other-clients ul li, aside .other-clients ul h5 li, h5 footer, h6 small, h6 body.article aside ul.recent-articles li a, body.article aside ul.recent-articles li h6 a, h6 aside .other-clients ul li, aside .other-clients ul h6 li, h6 footer {
+  h1 small, h1 aside .other-clients ul li, aside .other-clients ul h1 li, h1 footer, h2 small, h2 aside .other-clients ul li, aside .other-clients ul h2 li, h2 footer, h3 small, h3 aside .other-clients ul li, aside .other-clients ul h3 li, h3 footer, h4 small, h4 aside .other-clients ul li, aside .other-clients ul h4 li, h4 footer, h5 small, h5 aside .other-clients ul li, aside .other-clients ul h5 li, h5 footer, h6 small, h6 aside .other-clients ul li, aside .other-clients ul h6 li, h6 footer {
     font-weight: normal;
     line-height: 1;
     color: #999; }
@@ -470,16 +470,16 @@ h6 {
   font-size: 12px;
   line-height: 20px; }
 
-h1 small, h1 body.article aside ul.recent-articles li a, body.article aside ul.recent-articles li h1 a, h1 aside .other-clients ul li, aside .other-clients ul h1 li, h1 footer {
+h1 small, h1 aside .other-clients ul li, aside .other-clients ul h1 li, h1 footer {
   font-size: 24px; }
 
-h2 small, h2 body.article aside ul.recent-articles li a, body.article aside ul.recent-articles li h2 a, h2 aside .other-clients ul li, aside .other-clients ul h2 li, h2 footer {
+h2 small, h2 aside .other-clients ul li, aside .other-clients ul h2 li, h2 footer {
   font-size: 18px; }
 
-h3 small, h3 body.article aside ul.recent-articles li a, body.article aside ul.recent-articles li h3 a, h3 aside .other-clients ul li, aside .other-clients ul h3 li, h3 footer {
+h3 small, h3 aside .other-clients ul li, aside .other-clients ul h3 li, h3 footer {
   font-size: 14px; }
 
-h4 small, h4 body.article aside ul.recent-articles li a, body.article aside ul.recent-articles li h4 a, h4 aside .other-clients ul li, aside .other-clients ul h4 li, h4 footer {
+h4 small, h4 aside .other-clients ul li, aside .other-clients ul h4 li, h4 footer {
   font-size: 14px; }
 
 .page-header {
@@ -560,11 +560,11 @@ blockquote {
     font-size: 16px;
     font-weight: 300;
     line-height: 25px; }
-  blockquote small, blockquote body.article aside ul.recent-articles li a, body.article aside ul.recent-articles li blockquote a, blockquote aside .other-clients ul li, aside .other-clients ul blockquote li, blockquote footer {
+  blockquote small, blockquote aside .other-clients ul li, aside .other-clients ul blockquote li, blockquote footer {
     display: block;
     line-height: 20px;
     color: #999; }
-    blockquote small:before, blockquote body.article aside ul.recent-articles li a:before, body.article aside ul.recent-articles li blockquote a:before, blockquote aside .other-clients ul li:before, aside .other-clients ul blockquote li:before, blockquote footer:before {
+    blockquote small:before, blockquote aside .other-clients ul li:before, aside .other-clients ul blockquote li:before, blockquote footer:before {
       content: '\2014 \00A0'; }
   blockquote.pull-right {
     float: right;
@@ -574,15 +574,13 @@ blockquote {
     border-left: 0; }
     blockquote.pull-right p,
     blockquote.pull-right small,
-    blockquote.pull-right body.article aside ul.recent-articles li a,
-    body.article aside ul.recent-articles li blockquote.pull-right a,
     blockquote.pull-right aside .other-clients ul li,
     aside .other-clients ul blockquote.pull-right li,
     blockquote.pull-right footer {
       text-align: right; }
-    blockquote.pull-right small:before, blockquote.pull-right body.article aside ul.recent-articles li a:before, body.article aside ul.recent-articles li blockquote.pull-right a:before, blockquote.pull-right aside .other-clients ul li:before, aside .other-clients ul blockquote.pull-right li:before, blockquote.pull-right footer:before {
+    blockquote.pull-right small:before, blockquote.pull-right aside .other-clients ul li:before, aside .other-clients ul blockquote.pull-right li:before, blockquote.pull-right footer:before {
       content: ''; }
-    blockquote.pull-right small:after, blockquote.pull-right body.article aside ul.recent-articles li a:after, body.article aside ul.recent-articles li blockquote.pull-right a:after, blockquote.pull-right aside .other-clients ul li:after, aside .other-clients ul blockquote.pull-right li:after, blockquote.pull-right footer:after {
+    blockquote.pull-right small:after, blockquote.pull-right aside .other-clients ul li:after, aside .other-clients ul blockquote.pull-right li:after, blockquote.pull-right footer:after {
       content: '\00A0 \2014'; }
 
 q:before,
@@ -659,7 +657,7 @@ legend {
   color: #333;
   border: 0;
   border-bottom: 1px solid #e5e5e5; }
-  legend small, legend body.article aside ul.recent-articles li a, body.article aside ul.recent-articles li legend a, legend aside .other-clients ul li, aside .other-clients ul legend li, legend footer {
+  legend small, legend aside .other-clients ul li, aside .other-clients ul legend li, legend footer {
     font-size: 15px;
     color: #999; }
 
@@ -4494,46 +4492,15 @@ body {
   margin-bottom: 0;
   line-height: 100%; }
 
-.packtop, body.resume h3, body.articles h3 {
+.packtop, body.resume h3 {
   padding-top: 0;
   margin-top: 0;
   line-height: 100%; }
 
-.navbar .pull-right > a.brand {
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: 0;
-  margin-right: 0; }
-
-body.home .dictionary h1 {
-  font-size: 36px;
-  margin-bottom: 0; }
-body.home .dictionary ol, body.home .dictionary ul {
-  margin-bottom: 0; }
-  body.home .dictionary ol li, body.home .dictionary ul li {
-    margin: 0 0 0.5em 1em;
-    line-height: inherit; }
-body.home .dictionary ul {
-  list-style-type: none; }
-body.resume h3, body.articles h3 {
+body.resume h3 {
   text-align: right; }
-body.resume section, body.portfolio section {
+body.resume section {
   margin-bottom: 1em; }
-body.article h1 {
-  font-size: 30px; }
-body.article pre {
-  word-break: normal;
-  word-wrap: normal;
-  white-space: pre;
-  overflow: scroll; }
-body.article aside ul.recent-articles li {
-  margin-bottom: 0.75em; }
-
-#disqus_thread {
-  clear: both;
-  margin-top: 4em;
-  padding-top: 1em;
-  border-top: 3px double #ccc; }
 
 aside .other-work p {
   margin-bottom: 1.5em; }
