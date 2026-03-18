@@ -1,0 +1,44 @@
+body {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+aside {
+  display: none;
+}
+
+.hide.print-show {
+  display: inline;
+}
+
+body.resume {
+  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  body.resume .container {
+    width: 90%; }
+  body.resume h1 {
+    margin-left: 0; 
+    text-align: right;
+    float: right;
+  }
+  body.resume h1 small.muted {
+    display: block;
+  }
+
+  body.resume .row .span3 {
+    display: none; }
+  body.resume .row .span9 {
+    width: 920px; 
+    margin-left: 0;
+  }
+    body.resume .row .span9 .span2 {
+      float: none;
+      width: 920px; 
+      margin-left: 0;
+    }
+    body.resume .row .span9 .span2 h3 {
+      text-align: left;
+    }
+    body.resume .row .span9 .span7 {
+      width: 920px; 
+      margin-left: 0;
+    }

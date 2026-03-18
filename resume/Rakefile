@@ -1,0 +1,16 @@
+require "erb"
+require "pry"
+require "psych"
+
+task default: %w[resume]
+
+task :resume do
+  skills, experience, education = Psych
+    .safe_load_file("data.yml", symbolize_names: true)
+    .values_at(:skills, :experience, :education)
+
+  dupes = skills.flat_map { |s| s[:skills] }.tally.select{ |_, v| v > 1 }.keys
+  raise "Duplicate Skills: #{dupes.inspect}" unless dupes.empty?
+
+  File.write("index.html", ERB.new(File.read("template.erb"), trim_mode: "-").result(binding))
+end

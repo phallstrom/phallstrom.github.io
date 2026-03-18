@@ -1,0 +1,289 @@
+summary: |-
+  By day, I am a mild-mannered developer and sysadmin with <%= Date.today.year
+  - 1995 %> years of experience managing servers and developing applications on
+    a range of platforms using a variety of technologies.
+
+  By night, I am a husband of one and father of two who enjoys wood working,
+  golf, and being a dad.
+
+skills:
+  - label: Currently Use
+    skills:
+      - Alpine Linux
+      - ArgoCD
+      - AWS
+      - Bash
+      - Claude
+      - ClickHouse
+      - Datadog
+      - DNS
+      - Docker
+      - EC2
+      - Git
+      - GitHub
+      - Go
+      - Grafana
+      - HTML
+      - JavaScript
+      - JIRA
+      - JSON
+      - Kafka
+      - KeyDB
+      - Kubernetes
+      - Launch Darkly
+      - Loki
+      - macOS
+      - Nginx
+      - OpenSearch
+      - Pixelmator
+      - PostgreSQL
+      - Prometheus
+      - Puma
+      - Rbenv
+      - Redis
+      - Rollbar
+      - RSpec
+      - Ruby
+      - Ruby on Rails
+      - S3
+      - Schema Registry
+      - Sidekiq
+      - SQL
+      - SQLite
+      - Ubuntu
+      - Vim
+  - label: Previously Used
+    skills:
+      - AJAX
+      - Amavis
+      - Ansible
+      - Apache
+      - C
+      - C++
+      - Cacti
+      - Capistrano
+      - CentOS
+      - CGI
+      - CircleCI
+      - ClamAV
+      - Clojure
+      - Colinux
+      - CSS
+      - CVS
+      - Cygwin
+      - Debian
+      - DHCP
+      - Dovecot
+      - Elasticsearch
+      - FreeBSD
+      - FTP
+      - Gerrit
+      - GIMP
+      - Haml
+      - Heroku
+      - Honeybadger
+      - ImageMagick
+      - IMAP/POP
+      - Inno Setup
+      - Java
+      - Jenkins
+      - jQuery
+      - Kibana
+      - Lighttpd
+      - Linode
+      - Litespeed
+      - Mongrel
+      - MRTG
+      - Munin
+      - MySQL
+      - Nagios
+      - NAT
+      - Netatalk
+      - Netpbm
+      - New Relic
+      - NFS
+      - NIS
+      - Oracle
+      - Perl
+      - PgBouncer
+      - Photoshop
+      - PHP
+      - Phusion Passenger
+      - Postfix
+      - PPP
+      - Protoype
+      - ReactJS
+      - RSS
+      - Samba
+      - Sass
+      - SCORM
+      - Scriptaculous
+      - Sendmail
+      - Sentry
+      - Slim
+      - Solaris
+      - Solr
+      - Spamassassin
+      - Stasis
+      - Subversion
+      - Vignette StoryServer
+      - Vue.js
+      - Windows
+      - XML
+
+experience:
+  - company: DNSFilter, Inc.
+    positions:
+      - title: Staff Software Engineer
+        duration: July 2025 - Present
+      - title: Senior Ruby Engineer
+        duration: November 2021 - July 2025
+    description: The world's fastest DNS based threat protection and content
+                  filtering service, powered by artificial intelligence.
+    details:
+
+  - company: Shop-Ware, Inc.
+    positions:
+      - title: Lead Software Engineer
+        duration: January 2021 - October 2021
+    description: Shop-Ware is the automotive aftermarket's premier
+                  enterprise-grade SaaS platform for shop management.
+    details:
+      - Manage application development team, focusing on platform upgrades
+        and end user functionality.
+      - Actively contribute code, perform code reviews, and mentor team members.
+      - Oversaw complete internationalization efforts of application to support global market.
+
+  - company: Kenna Security
+    positions:
+      - title: Senior Software Engineer
+        duration: September 2019 - December 2020
+    description: Kenna Security is leading the field of risk-based
+                  vulnerability management, enabling organizations to measure,
+                  prioritize, and predict cyber risk.
+    details:
+      - Heavily involved in several major upgrades including Ruby on Rails,
+        Elasticsearch, and MySQL.
+      - Migrated development environment from monolithic Vagrant instance to
+        Docker Compose project resulting in faster setup, easier management,
+        increased usability, and reduced memory usage.
+      - Feature team member for
+        <a href='https://www.kennasecurity.com/blog/kenna-vmware-carbon-black-collaborate-to-provide-risk-prioritization-to-cloud-workloads/' target='_blank'>VMWare & VMware Carbon Black collaboration</a>.
+      - Increased team bonding by photoshopping colleagues into popular memes :-)
+
+  - company: Instructure
+    positions:
+      - title: Senior Software Engineer Team Lead
+        duration: July 2016 - August 2019
+      - title: Senior Software Engineer
+        duration: January 2016 - July 2016
+    description: Instructure makes software that makes smarter people. It
+                  started with Canvas in 2011 and the goal to make teaching and learning a
+                  lot easier.  In 2015, they launched Bridge which aims to change the way
+                  you think about employee engagement and corporate training.
+    details:
+      - Started as individual contributor on Bridge. Promoted to feature team
+        lead after six months. After three years, took over core team
+        responsible for suite wide shared services.
+      - Primary developer on yearlong project to upgrade third party SCORM
+        Engine. Authored <a href='https://github.com/instructure-bridge/scorm_engine' target='_blank'>ruby SCORM client gem</a>.
+      - Actively involved in multiple Ruby on Rails upgrades.
+      - Contributed dozens of original emoji to corporate Slack team :-)
+
+  - company: Supreme Golf
+    positions:
+      - title: CTO, Lead Developer
+        duration: August 2013 - November 2015
+    description: Supreme Golf makes it easy for golfers to compare prices and
+                  tee times from thousands of golf courses, online tee time retailers and
+                  deal sites all at once.
+    details:
+      - Architected and built entire system including web site, tee time import subsystems, API, and affiliate sites.
+      - Actively contributed to core products and services.
+      - Maintained server infrastructure.
+      - Worked closely with creative team to provide a quality user experience.
+      - Oversaw all technical initiatives, developers, and third parties.
+
+  - company: PJKH, LLC
+    positions:
+      - title: Owner
+        duration: June 2008 - January 2016
+    description: PJKH, LLC provides consulting for a variety of clients focusing on building self sufficient web sites and applications.
+                  For a sample of work, please <a href='/portfolio'>visit the portfolio</a>.
+
+  - company: Card Player Media
+    positions:
+      - title: Senior Applications Developer
+        duration: December 2005 - June 2008
+    description: Senior applications developer for company's web presence.  CardPlayer.com is a leading poker information portal on the Internet. The site provides visitors with live tournament reporting, a poker analyst tool that allows players to track their winnings, odds calculators, and insightful content that ranges from basic rules to advanced game strategy.
+    details:
+      - Primary member of online development team.
+      - Redesigned cardplayer.com from the ground up utilizing Ruby on Rails.
+      - Development lasted six months and launched in time for the 2006 World Series of Poker.
+      - At the height of the World Series of Poker, site averaged seven million page views per day.
+      - Managed server environment (CentOS) consisting of 23 web servers, 4 media servers, 7 ad servers, 7 database servers (MySQL cluster), and a handful of additional servers to handle email, DNS, etc.
+      - Maintained source code repository (Subversion).
+
+  - company: Gilbarco Veeder-Root
+    positions:
+      - title: Software Developer
+        duration: 2003 - December 2005
+    description: Core developer for company's merchandising solution for high-traffic gasoline retailers. Product provides centralized control over the creation, scheduling, deployment, and tracking of digital promotions and coupons for display on gasoline dispensers.
+    details:
+      - Retained after Adhesive Media was purchased by Gilbarco Veeder-Root.
+      - Primary member of product design and development team.
+      - Maintained source code repository (CVS).
+      - Responsible for product software builds, software release notes, and product updates via downloadable patches.
+      - Documentation of product including functional and technical specifications, user manual, quick reference cards, and online help.
+      - Integration of 30,000+ product image library utilizing full text search (tsearch2 via PostgreSQL).
+      - Managed development servers, build servers, and production server environment (FreeBSD).
+      - Developed fully functional Microsoft Windows demo of product. Demo uses Cygwin (and later Colinux) for Unix emulation.
+      - Provide standard IT functions for Seattle office including file, print, backup, network, and phone services.
+
+  - company: "Adhesive Media, Inc."
+    positions:
+      - title: "Co-Founder"
+        duration: "1998 -  2003"
+    description: " Co-founder of web development firm that focused on easy to use database driven websites and applications. Clientele included Targeted Genetics, LMN Architects, Seattle Southside, and The Gates Foundation.  Company's merchandising system was purchased by Gilbarco Veeder-Root in 2003."
+    details:
+      - Developed sites using mostly PHP and MySQL, with occasional use of Oracle, ASP, and Cold Fusion.
+      - Developed web-based CRM and group-ware applications.
+      - Worked with designers on issues as they relate to designing dynamic sites.
+      - Worked with sales to determine client needs and requirements.
+      - Converted client requirements into functional specifications.
+      - Provided standard IT functions for office including file, print, backup, network, email, web, and phone services.
+
+  - company: "Sierra On-Line"
+    positions:
+      - title: "Technical Director"
+        duration: "1996 - 1998"
+    description: " Sierra was a leader in the PC entertainment industry.  I was hired to maintain their website and FTP servers.  As my predecessor had already left, my first task was to physically locate the servers themselves."
+    details:
+      - Implemented and administered the corporate Internet presence.
+      - Primary developer through two Sierra.com site redesigns. The latter utilized Vignette StoryServer and Oracle.
+      - Provided guidance concerning the technical feasibility and practicality of all Internet initiatives.
+      - Maintained nation-wide server infrastructure of Solaris SPARC equipment.
+
+  - company: "Wolfe Internet Access, LLC"
+    positions:
+      - title: "Webmaster "
+        duration: "1995 - 1996"
+    description: " Wolfe Internet was one of the larger Seattle based ISP's at the time. I joined a small team of system administrators that managed their infrastructure."
+    details:
+      - Created and maintained web-based customer database and billing solution.
+      - Provided system administration support for USENET, networking, and account management.
+
+  - company: "University of Washington, Clinical Coordinating Center"
+    positions:
+      - title: "Programmer"
+        duration: "1990 - 1991"
+    description: " The coordinating center is in charge of managing a variety of clinical trials.  My work was related to a study to determine efficacy of providing chest compressions only (no breathing) to cardiac arrest victims."
+    details:
+      - Developed an Apple Macintosh training application for use by 911 dispatchers.
+      - Application played segments of real 911 calls and asked user to determine the next course of action. Feedback was provided after each response.
+      - Worked closely with clinical trial staff and local EMT personnel to define application requirements.
+
+education:
+  - name: University of Washington
+    location: Seattle, WA
+    duration: 1992 - 1996
