@@ -11,6 +11,7 @@ skills:
     skills:
       - Alpine Linux
       - ArgoCD
+      - Auth0
       - AWS
       - Bash
       - Claude
@@ -141,7 +142,12 @@ experience:
     description: DNSFilter is the world's fastest DNS based threat protection and content
                   filtering service, powered by artificial intelligence.
     details:
-
+      - Actively contribute code, perform code reviews, and mentor team members.
+      - Built initial data export service to allow customers to export DNS query data to third-party services such as S3, Splunk, and other SIEMs.
+      - Led multi-year Auth0 and authentication architecture work; designed and delivered the SSO enterprise connections feature and introduced multi-provider authentication to scale the product to enterprise identity requirements.
+      - Implemented application-level PostgreSQL database replica support, significantly reducing primary database contention and ensuring system stability by offloading approximately half of all queries (~10k/sec) to a read-only replica.
+      - Core member of team responsible for migrating single-node ClickHouse instance to multi-node cluster. Primary focus on new table schema, SQL queries, and application changes to support both databases simultaneously.
+      - Migrated multiple applications from CircleCI to GitHub Actions, implementing parallel testing and multi-version support for key components (Ruby, PostgreSQL, ClickHouse, etc.).
   - company: Shop-Ware, Inc.
     positions:
       - title: Lead Software Engineer
@@ -185,7 +191,7 @@ experience:
       - Started as individual contributor on Bridge. Promoted to feature team
         lead after six months. After three years, took over core team
         responsible for suite wide shared services.
-      - Primary developer on yearlong project to upgrade third party SCORM
+      - Primary developer on yearlong project to upgrade third-party SCORM
         Engine. Authored <a href='https://github.com/instructure-bridge/scorm_engine' target='_blank'>ruby SCORM client gem</a>.
       - Actively involved in multiple Ruby on Rails upgrades.
       - Contributed dozens of original emoji to corporate Slack team :-)
@@ -202,7 +208,7 @@ experience:
       - Actively contributed to core products and services.
       - Maintained server infrastructure.
       - Worked closely with creative team to provide a quality user experience.
-      - Oversaw all technical initiatives, developers, and third parties.
+      - Oversaw all technical initiatives, developers, and third-parties.
 
   - company: PJKH, LLC
     positions:
