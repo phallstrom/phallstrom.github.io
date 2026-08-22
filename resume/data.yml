@@ -51,6 +51,7 @@ skills:
       - Sidekiq
       - SQL
       - SQLite
+      - TypeScript
       - Ubuntu
       - Vim
   - label: Previously Used
